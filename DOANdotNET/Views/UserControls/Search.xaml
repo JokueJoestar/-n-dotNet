@@ -94,7 +94,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid Background="#F5F6FA" Margin="0,0,0,-133">
+    <Grid Background="#F5F6FA" Margin="0">
         <Border Width="540" VerticalAlignment="Center"
                 Background="White" CornerRadius="12"
                 BorderBrush="#E8EAED" BorderThickness="1">

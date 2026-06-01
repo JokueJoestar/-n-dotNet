@@ -25,6 +25,12 @@ namespace DOANdotNET.ViewModels
                 OnPropertyChanged();
             }
         }
+        private string _statusMessage;
+        public string StatusMessage
+        {
+            get => _statusMessage;
+            set => SetProperty(ref _statusMessage, value);
+        }
 
         // BIẾN HIỂN THỊ TIÊU ĐỀ TRANG TƯƠNG ỨNG
         private string _pageTitle;

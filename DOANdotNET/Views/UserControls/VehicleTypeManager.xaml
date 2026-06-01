@@ -8,7 +8,7 @@
              d:DesignHeight="550" Width="905">
 
     <UserControl.Resources>
-
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         <Style x:Key="ActionBtn" TargetType="Button">
             <Setter Property="Height"          Value="36"/>
             <Setter Property="FontSize"        Value="12"/>

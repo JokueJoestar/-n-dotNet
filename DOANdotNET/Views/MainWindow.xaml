@@ -108,9 +108,9 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <TextBlock Text="{Binding StatusMessage}"
-               Foreground="#7F8C8D" FontSize="11" FontStyle="Italic"
-               Margin="24,8,12,0" TextWrapping="Wrap"/>
+                    <TextBlock Text="Hệ thống quản lý bãi đỗ xe"
+           Foreground="#7F8C8D" FontSize="11" FontStyle="Italic"
+           Margin="24,8,12,0" TextWrapping="Wrap"/>
                 </StackPanel>
 
                 <StackPanel Margin="0,10,0,0">

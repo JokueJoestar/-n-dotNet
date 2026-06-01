@@ -129,25 +129,16 @@ namespace DOANdotNET.ViewModels.UCViewModels
                 if (SelectedStaff == null) return;
 
                 string pass = IsShowPassword ? StaffMatKhau : (p as PasswordBox)?.Password;
-                if (string.IsNullOrWhiteSpace(StaffName))
-                {
-                    MessageBox.Show("Họ tên không được để trống!", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-                }
 
-                if (StaffRole != "khachhang" && string.IsNullOrWhiteSpace(pass))
-                {
-                    MessageBox.Show("Nhân viên và Admin phải có mật khẩu!", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-                }
-
-                // Chỉ cần gọi Service Update và Refresh lại bảng
+                // Nếu không nhập mật khẩu mới thì giữ nguyên hash cũ trong DB
                 var updatedUser = new User
                 {
-                    ID = SelectedStaff.ID, 
+                    ID = SelectedStaff.ID,
                     HoTen = StaffName,
                     VaiTro = StaffRole,
-                    MatKhau = pass ?? "",
+                    MatKhau = string.IsNullOrWhiteSpace(pass)
+                              ? SelectedStaff.MatKhau  // giữ nguyên
+                              : pass,                  // service sẽ hash lại
                     SDT = StaffSDT ?? "",
                     BienSo = StaffBienSo ?? ""
                 };
@@ -175,10 +166,10 @@ namespace DOANdotNET.ViewModels.UCViewModels
                     StaffSDT = u.SDT;
                     StaffBienSo = u.BienSo;
                     StaffRole = u.VaiTro;
-                    StaffMatKhau = u.MatKhau;
+                    StaffMatKhau = "";
 
                     _isEditMode = true;
-                    IsShowPassword = true; // Hiện pass ra ngoài
+                    IsShowPassword = false; // Hiện pass ra ngoài
 
                     CommandManager.InvalidateRequerySuggested();
                 }

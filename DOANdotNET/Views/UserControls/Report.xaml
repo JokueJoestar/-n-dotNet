@@ -147,7 +147,7 @@
                     BorderBrush="#E8EAED" BorderThickness="1"
                     Padding="14,12" Margin="0,0,8,0">
                 <StackPanel>
-                    <TextBlock Text="Doanh thu hôm nay" FontSize="11"
+                    <TextBlock Text="Doanh thu (theo lọc)" FontSize="11"
                                Foreground="#888780" Margin="0,0,0,4"/>
                     <TextBlock Text="{Binding TotalRevenue, StringFormat={}{0:N0} đ}"
                                FontSize="22" FontWeight="Bold" Foreground="#854F0B"/>
@@ -179,13 +179,13 @@
                                Foreground="#5F5E5A" VerticalAlignment="Center"
                                Margin="0,0,6,0"/>
                     <DatePicker SelectedDate="{Binding TuNgay}"
-                                Width="130" Height="23" FontSize="12"/>
+                                Width="130" Height="34" FontSize="12"/>
 
                     <TextBlock Text="đến" FontSize="12"
                                Foreground="#5F5E5A" VerticalAlignment="Center"
                                Margin="10,0,6,0"/>
                     <DatePicker SelectedDate="{Binding DenNgay}"
-                                Width="130" Height="21" FontSize="12"/>
+                                Width="130" Height="34" FontSize="12"/>
 
                     <!-- Lọc trạng thái -->
                     <ComboBox ItemsSource="{Binding ListTrangThai}"

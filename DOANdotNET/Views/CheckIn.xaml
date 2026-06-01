@@ -11,6 +11,7 @@
         FocusManager.FocusedElement="{Binding ElementName=txtTen}">
 
     <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         <Style x:Key="InputStyle" TargetType="Control">
             <Setter Property="Height" Value="38"/>
             <Setter Property="FontSize" Value="14"/>

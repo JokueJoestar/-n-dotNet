@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DOANdotNET.Models;
 
-namespace DOANdotNET.ViewModels.Services  
+namespace DOANdotNET.ViewModels.Services
 {
     public class ParkingService
     {
@@ -107,7 +107,7 @@ namespace DOANdotNET.ViewModels.Services
             // Ghi một phiếu rỗng vào sổ Transactions
             _db.Transactions.Add(new Transaction
             {
-                MaGiaoDich = "GD" + DateTime.Now.ToString("yyMMddHHmmss") + idDoXe, 
+                MaGiaoDich = "GD" + DateTime.Now.ToString("yyMMddHHmmss") + idDoXe,
                 IDDoXe = idDoXe,
                 IDNguoiDung = slot.IDNguoiDung ?? "admin",
                 TenKhachHang = tenKhach,
@@ -115,8 +115,8 @@ namespace DOANdotNET.ViewModels.Services
                 BienSoXe = bienSo,
                 MaLoaiXe = maLoaiXe,
                 ThoiGianVao = slot.ThoiGianVao.Value,
-                ThoiGianRa = null, 
-                ThanhTien = 0,    
+                ThoiGianRa = null,
+                ThanhTien = 0,
                 HinhAnhVao = hinhAnh
             });
 
@@ -156,7 +156,7 @@ namespace DOANdotNET.ViewModels.Services
             }
             else
             {
-               
+
                 _db.Transactions.Add(new Transaction
                 {
                     MaGiaoDich = "GD" + DateTime.Now.ToString("yyMMddHHmmss") + idDoXe,
