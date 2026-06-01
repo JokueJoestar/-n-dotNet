@@ -1,0 +1,272 @@
+﻿<UserControl x:Class="DOANdotNET.Views.UserControls.Search"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" d:DesignHeight="500" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+
+        <Style x:Key="ActionBtn" TargetType="Button">
+            <Setter Property="Height"          Value="40"/>
+            <Setter Property="FontSize"        Value="13"/>
+            <Setter Property="FontWeight"      Value="SemiBold"/>
+            <Setter Property="Foreground"      Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd" CornerRadius="8"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Opacity" Value="0.85"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="bd" Property="Opacity" Value="0.7"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="GhostBtn" TargetType="Button">
+            <Setter Property="Height"          Value="32"/>
+            <Setter Property="FontSize"        Value="12"/>
+            <Setter Property="Background"      Value="White"/>
+            <Setter Property="Foreground"      Value="#888780"/>
+            <Setter Property="BorderBrush"     Value="#D3D1C7"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd" CornerRadius="6"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#F1EFE8"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Style TextBox bo góc + focus -->
+        <Style x:Key="SearchBox" TargetType="TextBox">
+            <Setter Property="Height"                  Value="40"/>
+            <Setter Property="FontSize"                Value="14"/>
+            <Setter Property="Padding"                 Value="12,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="BorderBrush"             Value="#D3D1C7"/>
+            <Setter Property="BorderThickness"         Value="1"/>
+            <Setter Property="Background"              Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="bd" CornerRadius="8"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          Padding="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="bd" Property="BorderBrush" Value="#378ADD"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="#F5F6FA" Margin="0,0,0,-133">
+        <Border Width="540" VerticalAlignment="Center"
+                Background="White" CornerRadius="12"
+                BorderBrush="#E8EAED" BorderThickness="1">
+
+            <!-- Header -->
+            <StackPanel>
+                <Border Padding="22,18,22,16"
+                        BorderBrush="#E8EAED" BorderThickness="0,0,0,1">
+                    <StackPanel>
+                        <TextBlock Text="Tìm kiếm xe theo biển số"
+                                   FontSize="16" FontWeight="SemiBold"
+                                   Foreground="#1A1A1A"/>
+                        <TextBlock Text="Nhập biển số để tìm vị trí xe đang trong bãi"
+                                   FontSize="12" Foreground="#888780"
+                                   Margin="0,3,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Body -->
+                <StackPanel Margin="22,18,22,22">
+
+                    <!-- Label -->
+                    <TextBlock Text="Biển số xe" FontSize="12" FontWeight="SemiBold"
+                               Foreground="#5F5E5A" Margin="0,0,0,6"/>
+
+                    <!-- Input + Nút tìm -->
+                    <Grid Margin="0,0,0,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0"
+                                 Style="{StaticResource SearchBox}"
+                                 Text="{Binding SearchBienSo,
+                                                UpdateSourceTrigger=PropertyChanged}"/>
+                        <Button Grid.Column="1"
+                            Content="Tìm kiếm"
+                            Command="{Binding SearchCommand}"
+                            IsDefault="True" Style="{StaticResource ActionBtn}"
+                            Background="#378ADD"
+                            Width="110" Margin="8,0,0,0"/>
+                    </Grid>
+
+                    <!-- Nút làm trống -->
+                    <Button Content="Làm trống"
+                            Command="{Binding ClearSearchCommand}"
+                            Style="{StaticResource GhostBtn}"
+                            Width="90" HorizontalAlignment="Right"
+                            Margin="0,0,0,14"/>
+
+                    <Separator Background="#E8EAED" Margin="0,0,0,14"/>
+
+                    <!-- KẾT QUẢ — Chưa tìm -->
+                    <Border Background="#F5F6FA" CornerRadius="8" MinHeight="110"
+        Visibility="{Binding IsNotSearched, Converter={StaticResource BoolToVis}}">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"
+                                    Margin="0,20">
+                            <TextBlock Text="🔍" FontSize="28"
+                                       HorizontalAlignment="Center" Margin="0,0,0,8"/>
+                            <TextBlock Text="Nhập biển số và bấm Tìm kiếm"
+                                       FontSize="13" Foreground="#888780"
+                                       HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- KẾT QUẢ — Tìm thấy -->
+                    <Border CornerRadius="10" BorderThickness="1"
+                            Visibility="{Binding IsFound, Converter={StaticResource BoolToVis}}">
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="#97C459"/>
+                        </Border.BorderBrush>
+                        <StackPanel>
+                            <!-- Header xanh -->
+                            <Border Background="#EAF3DE" CornerRadius="9,9,0,0" Padding="14,10">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="✓  Tìm thấy xe"
+                                               FontSize="13" FontWeight="SemiBold"
+                                               Foreground="#27500A"/>
+                                    <Border Background="#E6F1FB" CornerRadius="20"
+                                            Padding="8,2" Margin="10,0,0,0">
+                                        <TextBlock Text="Đang gửi" FontSize="11"
+                                                   FontWeight="SemiBold" Foreground="#0C447C"/>
+                                    </Border>
+                                </StackPanel>
+                            </Border>
+                            <!-- Thông tin 2 cột -->
+                            <Grid Margin="14,12,14,14">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <!-- Biển số -->
+                                <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,0,10">
+                                    <TextBlock Text="BIỂN SỐ XE" FontSize="10"
+                                               Foreground="#888780" Margin="0,0,0,2"/>
+                                    <TextBlock Text="{Binding ResultBienSo}"
+                                               FontSize="16" FontWeight="Bold"
+                                               Foreground="#185FA5"/>
+                                </StackPanel>
+
+                                <!-- Vị trí -->
+                                <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,0,0,10">
+                                    <TextBlock Text="VỊ TRÍ ĐỖ" FontSize="10"
+                                               Foreground="#888780" Margin="0,0,0,2"/>
+                                    <TextBlock Text="{Binding ResultIDDoXe}"
+                                               FontSize="18" FontWeight="Bold"
+                                               Foreground="#185FA5"/>
+                                </StackPanel>
+
+                                <!-- Khách hàng -->
+                                <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,0,10">
+                                    <TextBlock Text="KHÁCH HÀNG" FontSize="10"
+                                               Foreground="#888780" Margin="0,0,0,2"/>
+                                    <TextBlock Text="{Binding ResultTenKhach}"
+                                               FontSize="13" Foreground="#1A1A1A"/>
+                                </StackPanel>
+
+                                <!-- Khu vực -->
+                                <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                                    <TextBlock Text="KHU VỰC" FontSize="10"
+                                               Foreground="#888780" Margin="0,0,0,2"/>
+                                    <TextBlock Text="{Binding ResultKhuVuc}"
+                                               FontSize="13" Foreground="#1A1A1A"/>
+                                </StackPanel>
+
+                                <!-- Giờ vào -->
+                                <StackPanel Grid.Row="2" Grid.Column="0">
+                                    <TextBlock Text="GIỜ VÀO" FontSize="10"
+                                               Foreground="#888780" Margin="0,0,0,2"/>
+                                    <TextBlock Text="{Binding ResultGioVao,
+                                                               StringFormat={}{0:dd/MM/yyyy HH:mm}}"
+                                               FontSize="13" Foreground="#1A1A1A"/>
+                                </StackPanel>
+
+                                <!-- SĐT -->
+                                <StackPanel Grid.Row="2" Grid.Column="1">
+                                    <TextBlock Text="SỐ ĐIỆN THOẠI" FontSize="10"
+                                               Foreground="#888780" Margin="0,0,0,2"/>
+                                    <TextBlock Text="{Binding ResultSoDienThoai}"
+                                               FontSize="13" Foreground="#1A1A1A"/>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- KẾT QUẢ — Không tìm thấy -->
+                    <Border CornerRadius="10" BorderThickness="1" BorderBrush="#F09595"
+                            Visibility="{Binding IsNotFound, Converter={StaticResource BoolToVis}}">
+                        <StackPanel>
+                            <Border Background="#FCEBEB" CornerRadius="9,9,0,0" Padding="14,10">
+                                <TextBlock Text="✗  Không tìm thấy xe"
+                                           FontSize="13" FontWeight="SemiBold"
+                                           Foreground="#791F1F"/>
+                            </Border>
+                            <TextBlock Margin="14,10,14,14" FontSize="13"
+                                       Foreground="#5F5E5A" TextWrapping="Wrap">
+                                <Run Text="Biển số"/>
+                                <Run Text="{Binding SearchBienSo}" FontWeight="SemiBold"
+                                     Foreground="#185FA5"/>
+                                <Run Text="không có trong bãi. Xe có thể chưa vào hoặc đã ra."/>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

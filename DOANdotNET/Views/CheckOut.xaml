@@ -1,0 +1,141 @@
+﻿<Window x:Class="DOANdotNET.Views.CheckOut"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        mc:Ignorable="d"
+        Title="Thanh Toán &amp; Xe Ra" Height="620" Width="750"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
+        Background="#F5F6FA">
+
+    <Window.Resources>
+        <Style x:Key="LabelStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="#888780"/>
+            <Setter Property="Margin" Value="0,0,0,4"/>
+        </Style>
+        <Style x:Key="ValueStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="Margin" Value="0,0,0,12"/>
+        </Style>
+        <Style x:Key="ActionBtn" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd" CornerRadius="6" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Opacity" Value="0.85"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="bd" Property="Opacity" Value="0.7"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Border Background="White" CornerRadius="12" Padding="25" BorderBrush="#E8EAED" BorderThickness="1">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" ShadowDepth="2" Color="#DCDDE1" Opacity="0.5"/>
+            </Border.Effect>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="280"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="0,0,25,0">
+                    <TextBlock Text="ĐỐI CHIẾU XE" FontSize="16" FontWeight="Black" Foreground="#2C3E50" Margin="0,0,0,15"/>
+
+                    <TextBlock Text="Ảnh xe vào:" Style="{StaticResource LabelStyle}"/>
+                    <Border Height="160" Background="#F8F9FA" CornerRadius="8"
+                            BorderBrush="#D3D1C7" BorderThickness="1" Margin="0,0,0,15">
+                        <Image Source="{Binding AnhXeVao}" Stretch="UniformToFill" ClipToBounds="True"/>
+                    </Border>
+
+                    <TextBlock Text="Ảnh xe ra (Camera):" Style="{StaticResource LabelStyle}"/>
+                    <Border BorderBrush="#E8EAED" BorderThickness="1.5" CornerRadius="8" Height="200">
+                        <Grid Margin="0,0,0,-2">
+                            <Image Source="{Binding AnhXeRa}" Stretch="UniformToFill" Panel.ZIndex="1" Margin="0,0,0,17"/>
+
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="2">
+                                <StackPanel.Style>
+                                    <Style TargetType="StackPanel">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding HasAnhXeRa}" Value="False">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </StackPanel.Style>
+
+                                <Button Content="📷 Bật Webcam / Chọn Ảnh" 
+                                        Command="{Binding CaptureCameraCommand}"
+                                        Background="#F5F6FA" Foreground="#7F8C8D" BorderThickness="1" 
+                                        Padding="15,8" Cursor="Hand" FontWeight="SemiBold"/>
+                                <TextBlock Text="(Giả lập Camera)" Foreground="#BDC3C7" FontSize="11" 
+                                           HorizontalAlignment="Center" Margin="0,5,0,0" FontStyle="Italic"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="CHI TIẾT THANH TOÁN" FontSize="16" FontWeight="Black" Foreground="#2C3E50" Margin="0,0,0,15"/>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Biển số:" Style="{StaticResource LabelStyle}"/>
+                            <TextBlock Text="{Binding ResultBienSo}" Style="{StaticResource ValueStyle}" Foreground="#185FA5"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="Vị trí:" Style="{StaticResource LabelStyle}"/>
+                            <TextBlock Text="{Binding ResultIDDoXe}" Style="{StaticResource ValueStyle}"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <Separator Margin="0,0,0,15" Background="#EAECEE"/>
+                    <TextBlock Text="Khách hàng:" Style="{StaticResource LabelStyle}"/>
+                    <TextBlock Text="{Binding ResultTenKhach}" Style="{StaticResource ValueStyle}"/>
+
+                    <TextBlock Text="Thời gian vào:" Style="{StaticResource LabelStyle}"/>
+                    <TextBlock Text="{Binding ResultGioVao, StringFormat={}{0:dd/MM/yyyy HH:mm}}" Style="{StaticResource ValueStyle}"/>
+
+                    <TextBlock Text="Thời gian ra:" Style="{StaticResource LabelStyle}"/>
+                    <TextBlock Text="{Binding ResultGioRa, StringFormat={}{0:dd/MM/yyyy HH:mm}}" Style="{StaticResource ValueStyle}"/>
+
+                    <TextBlock Text="Tổng thời gian gửi:" Style="{StaticResource LabelStyle}"/>
+                    <TextBlock Text="{Binding TongThoiGian}" Style="{StaticResource ValueStyle}" Foreground="#E67E22"/>
+
+                    <Border Background="#F1EFE8" CornerRadius="8" Padding="15" Margin="0,10,0,20">
+                        <StackPanel>
+                            <TextBlock Text="TỔNG TIỀN PHẢI THANH TOÁN" FontSize="12" FontWeight="Bold" Foreground="#5F5E5A" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding ThanhTien, StringFormat={}{0:N0} đ}" FontSize="32" FontWeight="Black" 
+                                       Foreground="#27AE60" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Button Content="XÁC NHẬN THANH TOÁN &amp; XE RA" 
+                            Command="{Binding ConfirmCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                            Height="45" Background="#27AE60" Foreground="White" FontWeight="Bold" 
+                            BorderThickness="0" Cursor="Hand" Style="{DynamicResource ActionBtn}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

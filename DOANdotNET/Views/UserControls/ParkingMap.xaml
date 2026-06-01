@@ -1,0 +1,356 @@
+﻿<UserControl x:Class="DOANdotNET.Views.UserControls.ParkingMap"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DOANdotNET.Views.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="660" d:DesignWidth="1060">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+
+        <!-- ===== MÀU SẮC ===== -->
+        <SolidColorBrush x:Key="BgPage"        Color="#F5F6FA"/>
+        <SolidColorBrush x:Key="BgCard"        Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="BorderCard"    Color="#E8EAED"/>
+
+        <SolidColorBrush x:Key="GreenFill"     Color="#EAF3DE"/>
+        <SolidColorBrush x:Key="GreenText"     Color="#27500A"/>
+        <SolidColorBrush x:Key="GreenBtn"      Color="#639922"/>
+        <SolidColorBrush x:Key="GreenBtnHover" Color="#3B6D11"/>
+
+        <SolidColorBrush x:Key="RedFill"       Color="#FCEBEB"/>
+        <SolidColorBrush x:Key="RedText"       Color="#791F1F"/>
+
+        <SolidColorBrush x:Key="BlueFill"      Color="#E6F1FB"/>
+        <SolidColorBrush x:Key="BlueText"      Color="#0C447C"/>
+        <SolidColorBrush x:Key="BlueBtn"       Color="#378ADD"/>
+
+        <SolidColorBrush x:Key="AmberBtn"      Color="#BA7517"/>
+        <SolidColorBrush x:Key="AmberText"     Color="#854F0B"/>
+
+        <SolidColorBrush x:Key="TextPrimary"   Color="#1A1A1A"/>
+        <SolidColorBrush x:Key="TextSecondary" Color="#5F5E5A"/>
+        <SolidColorBrush x:Key="TextMuted"     Color="#888780"/>
+
+        <!-- ===== STYLE NÚT CHÍNH ===== -->
+        <Style x:Key="ActionBtn" TargetType="Button">
+            <Setter Property="Foreground"    Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height"        Value="42"/>
+            <Setter Property="FontSize"      Value="13"/>
+            <Setter Property="FontWeight"    Value="SemiBold"/>
+            <Setter Property="Cursor"        Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd" CornerRadius="8"
+                                Background="{TemplateBinding Background}">
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
+                                <ContentPresenter/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Opacity" Value="0.85"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="bd" Property="Opacity" Value="0.7"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="bd" Property="Opacity" Value="0.35"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ===== STYLE NÚT PHỤ ===== -->
+        <Style x:Key="GhostBtn" TargetType="Button">
+            <Setter Property="Background"    Value="White"/>
+            <Setter Property="Foreground"    Value="{StaticResource TextSecondary}"/>
+            <Setter Property="BorderBrush"   Value="{StaticResource BorderCard}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Height"        Value="34"/>
+            <Setter Property="FontSize"      Value="12"/>
+            <Setter Property="Cursor"        Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd" CornerRadius="7"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#F5F6FA"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource BgPage}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="290"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ============ CỘT TRÁI: SƠ ĐỒ ============ -->
+        <Border Grid.Column="0" Background="{StaticResource BgCard}"
+                Margin="14" CornerRadius="12"
+                BorderBrush="{StaticResource BorderCard}" BorderThickness="1">
+            <Grid Margin="16">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Tiêu đề + Refresh -->
+                <Grid Grid.Row="0" Margin="0,0,0,12">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="Sơ đồ vị trí đỗ xe"
+                                   FontSize="15" FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimary}"/>
+                    </StackPanel>
+                    <Button HorizontalAlignment="Right"
+                            Content="↺  Làm mới"
+                            Command="{Binding RefreshCommand}"
+                            Style="{StaticResource GhostBtn}"
+                            Width="90"/>
+                </Grid>
+
+                <!-- Thống kê nhanh -->
+                <StackPanel Grid.Row="1" Orientation="Horizontal"
+                            Margin="0,0,0,10">
+                    <Border Background="{StaticResource GreenFill}"
+                            CornerRadius="6" Padding="12,6" Margin="0,0,8,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="✓  Trống: "
+                                       Foreground="{StaticResource GreenText}"
+                                       FontWeight="SemiBold" FontSize="13"/>
+                            <TextBlock Text="{Binding SlotTrong}"
+                                       Foreground="{StaticResource GreenText}"
+                                       FontWeight="Bold" FontSize="15"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="{StaticResource RedFill}"
+                            CornerRadius="6" Padding="12,6">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="▪  Có xe: "
+                                       Foreground="{StaticResource RedText}"
+                                       FontWeight="SemiBold" FontSize="13"/>
+                            <TextBlock Text="{Binding SlotCoXe}"
+                                       Foreground="{StaticResource RedText}"
+                                       FontWeight="Bold" FontSize="15"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- Chú thích màu -->
+                <Border Grid.Row="2"
+                        Background="#F8F9FA" CornerRadius="6"
+                        Padding="12,7" Margin="0,0,0,12">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle Width="12" Height="12" RadiusX="3" RadiusY="3"
+                                   Fill="#97C459" Margin="0,0,5,0"/>
+                        <TextBlock Text="Trống" FontSize="12"
+                                   Foreground="{StaticResource TextSecondary}"
+                                   Margin="0,0,16,0"/>
+                        <Rectangle Width="12" Height="12" RadiusX="3" RadiusY="3"
+                                   Fill="#E24B4A" Margin="0,0,5,0"/>
+                        <TextBlock Text="Có xe" FontSize="12"
+                                   Foreground="{StaticResource TextSecondary}"
+                                   Margin="0,0,16,0"/>
+                        <Rectangle Width="12" Height="12" RadiusX="3" RadiusY="3"
+                                   Fill="#378ADD" Margin="0,0,5,0"/>
+                        <TextBlock Text="Đang chọn" FontSize="12"
+                                   Foreground="{StaticResource TextSecondary}"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Lưới ô đỗ xe -->
+                <ListBox Grid.Row="3"
+                         ItemsSource="{Binding ListSlots}"
+                         SelectedItem="{Binding SelectedSlot}"
+                         BorderThickness="0" Background="Transparent"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <local:ParkingSlot Margin="5"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Padding" Value="0"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListBoxItem">
+                                        <ContentPresenter/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </Grid>
+        </Border>
+
+        <!-- ============ CỘT PHẢI: THÔNG TIN ============ -->
+        <Border Grid.Column="1" Background="{StaticResource BgCard}"
+                Margin="0,14,14,14" CornerRadius="12"
+                BorderBrush="{StaticResource BorderCard}" BorderThickness="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Header panel -->
+                <Border Grid.Row="0" Padding="16,14"
+                        BorderBrush="{StaticResource BorderCard}"
+                        BorderThickness="0,0,0,1">
+                    <TextBlock Text="THÔNG TIN VỊ TRÍ"
+                               FontSize="11" FontWeight="SemiBold"
+                               Foreground="{StaticResource TextMuted}"
+                                Typography.Capitals="SmallCaps"/>
+                </Border>
+
+                <!-- Nội dung thông tin -->
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="16,14,16,0">
+
+                        <!-- Mã vị trí + trạng thái -->
+                        <TextBlock Text="{Binding SelectedSlot.IDDoXe, FallbackValue='—'}"
+                                   FontSize="28" FontWeight="Bold"
+                                   Foreground="{StaticResource BlueBtn}"
+                                   Margin="0,0,0,4"/>
+
+                        <!-- Badge trạng thái -->
+                        <Border CornerRadius="20" Padding="10,4"
+                                HorizontalAlignment="Left" Margin="0,0,0,16">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="Background" Value="#F1EFE8"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SelectedSlot.TrangThai}" Value="Đang gửi">
+                                            <Setter Property="Background" Value="{StaticResource RedFill}"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding SelectedSlot.TrangThai}" Value="Trống">
+                                            <Setter Property="Background" Value="{StaticResource GreenFill}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <TextBlock FontSize="12" FontWeight="SemiBold">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Text" Value="Chưa chọn"/>
+                                        <Setter Property="Foreground" Value="{StaticResource TextMuted}"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding SelectedSlot.TrangThai}" Value="Đang gửi">
+                                                <Setter Property="Text" Value="▪  Đang có xe"/>
+                                                <Setter Property="Foreground" Value="{StaticResource RedText}"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding SelectedSlot.TrangThai}" Value="Trống">
+                                                <Setter Property="Text" Value="✓  Trống"/>
+                                                <Setter Property="Foreground" Value="{StaticResource GreenText}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Border>
+
+                        <Separator Background="{StaticResource BorderCard}" Margin="0,0,0,14"/>
+
+                        <!-- Khách hàng -->
+                        <TextBlock Text="KHÁCH HÀNG" FontSize="10"
+                                   Foreground="{StaticResource TextMuted}"
+                                   FontWeight="SemiBold" Margin="0,0,0,3"/>
+                        <TextBlock Text="{Binding SelectedSlot.TenKhachHang, FallbackValue='—'}"
+                                   FontSize="14" Foreground="{StaticResource TextPrimary}"
+                                   Margin="0,0,0,12"/>
+
+                        <!-- Biển số -->
+                        <TextBlock Text="BIỂN SỐ XE" FontSize="10"
+                                   Foreground="{StaticResource TextMuted}"
+                                   FontWeight="SemiBold" Margin="0,0,0,3"/>
+                        <TextBlock Text="{Binding SelectedSlot.BienSoXe, FallbackValue='—'}"
+                                   FontSize="16" FontWeight="Bold"
+                                   Foreground="{StaticResource BlueText}"
+                                   Margin="0,0,0,12"/>
+
+                        <!-- Giờ vào -->
+                        <TextBlock Text="GIỜ VÀO" FontSize="10"
+                                   Foreground="{StaticResource TextMuted}"
+                                   FontWeight="SemiBold" Margin="0,0,0,3"/>
+                        <TextBlock Text="{Binding SelectedSlot.ThoiGianVao,
+                                                   StringFormat={}{0:dd/MM/yyyy  HH:mm},
+                                                   FallbackValue='—'}"
+                                   FontSize="13" Foreground="{StaticResource TextPrimary}"
+                                   Margin="0,0,0,12"/>
+
+                        <Separator Background="{StaticResource BorderCard}" Margin="0,0,0,12"/>
+
+                        <!-- Phí dự tính -->
+                        <TextBlock Text="PHÍ DỰ TÍNH" FontSize="10"
+                                   Foreground="{StaticResource TextMuted}"
+                                   FontWeight="SemiBold" Margin="0,0,0,3"/>
+                        <TextBlock Text="{Binding ThanhTienDuTinh,
+                                                   StringFormat={}{0:N0} VNĐ,
+                                                   FallbackValue='—'}"
+                                   FontSize="18" FontWeight="Bold"
+                                   Foreground="{StaticResource AmberText}"
+                                   Margin="0,0,0,6"/>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <!-- Các nút hành động -->
+                <StackPanel Grid.Row="2" Margin="16,12,16,16" >
+
+                    <Button Content="Cho xe vào bãi" 
+            Command="{Binding CheckInCommand}" 
+            Margin="0,0,0,8"
+            Style="{StaticResource ActionBtn}"
+            Background="{StaticResource GreenBtn}"/>
+
+                    <Button Content="Thanh toán &amp; xe ra" 
+            Command="{Binding CheckOutCommand}" 
+            Margin="0,0,0,12"
+            Style="{StaticResource ActionBtn}"
+            Background="{StaticResource AmberBtn}"/>
+
+                    <StackPanel Orientation="Horizontal"
+                Visibility="{Binding CanAddSlot, Converter={StaticResource BoolToVis}}">
+                        <Button Content="+ Thêm vị trí"
+                Command="{Binding AddSlotCommand}"
+                Style="{StaticResource GhostBtn}"
+                Width="120" Margin="0,0,8,0"/>
+                        <Button Content="Xóa vị trí"
+                Command="{Binding RemoveSlotCommand}"
+                Style="{StaticResource GhostBtn}"
+                Width="100"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

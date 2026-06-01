@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="87f6291195f84c8d891521963f0ce266" Name="Diagram1">
+        <EntityTypeShape EntityType="QL_BaiDoXeModel.LoaiXe" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_BaiDoXeModel.ParkingSlot" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_BaiDoXeModel.Transaction" Width="1.5" PointX="6" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_BaiDoXeModel.User" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <AssociationConnector Association="QL_BaiDoXeModel.FK__ParkingSl__MaLoa__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_BaiDoXeModel.FK__Transacti__MaLoa__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_BaiDoXeModel.FK__ParkingSl__IDNgu__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_BaiDoXeModel.FK__Transacti__IDNgu__4222D4EF" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

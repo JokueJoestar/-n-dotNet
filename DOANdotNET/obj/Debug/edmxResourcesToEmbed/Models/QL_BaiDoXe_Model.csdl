@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QL_BaiDoXeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="LoaiXe">
+    <Key>
+      <PropertyRef Name="MaLoaiXe" />
+    </Key>
+    <Property Name="MaLoaiXe" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenLoaiXe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhiMoiGio" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <NavigationProperty Name="ParkingSlots" Relationship="Self.FK__ParkingSl__MaLoa__3E52440B" FromRole="LoaiXe" ToRole="ParkingSlot" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__MaLoa__4316F928" FromRole="LoaiXe" ToRole="Transactions" />
+  </EntityType>
+  <EntityType Name="ParkingSlot">
+    <Key>
+      <PropertyRef Name="IDDoXe" />
+    </Key>
+    <Property Name="IDDoXe" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="KhuVuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IDNguoiDung" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TenKhachHang" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="BienSoXe" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ThoiGianVao" Type="DateTime" Precision="3" />
+    <Property Name="MaLoaiXe" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="HinhAnhVao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TrangThai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="LoaiXe" Relationship="Self.FK__ParkingSl__MaLoa__3E52440B" FromRole="ParkingSlot" ToRole="LoaiXe" />
+    <NavigationProperty Name="User" Relationship="Self.FK__ParkingSl__IDNgu__3D5E1FD2" FromRole="ParkingSlot" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="MaGiaoDich" />
+    </Key>
+    <Property Name="MaGiaoDich" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IDNguoiDung" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IDDoXe" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TenKhachHang" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="BienSoXe" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MaLoaiXe" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ThoiGianVao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ThoiGianRa" Type="DateTime" Precision="3" />
+    <Property Name="ThanhTien" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="HinhAnhVao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HinhAnhRa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="LoaiXe" Relationship="Self.FK__Transacti__MaLoa__4316F928" FromRole="Transactions" ToRole="LoaiXe" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Transacti__IDNgu__4222D4EF" FromRole="Transactions" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HoTen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="BienSo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="VaiTro" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MatKhau" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="ParkingSlots" Relationship="Self.FK__ParkingSl__IDNgu__3D5E1FD2" FromRole="Users" ToRole="ParkingSlot" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__IDNgu__4222D4EF" FromRole="Users" ToRole="Transactions" />
+  </EntityType>
+  <Association Name="FK__ParkingSl__MaLoa__3E52440B">
+    <End Role="LoaiXe" Type="Self.LoaiXe" Multiplicity="0..1" />
+    <End Role="ParkingSlot" Type="Self.ParkingSlot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiXe">
+        <PropertyRef Name="MaLoaiXe" />
+      </Principal>
+      <Dependent Role="ParkingSlot">
+        <PropertyRef Name="MaLoaiXe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__MaLoa__4316F928">
+    <End Role="LoaiXe" Type="Self.LoaiXe" Multiplicity="1" />
+    <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiXe">
+        <PropertyRef Name="MaLoaiXe" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="MaLoaiXe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ParkingSl__IDNgu__3D5E1FD2">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="ParkingSlot" Type="Self.ParkingSlot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ParkingSlot">
+        <PropertyRef Name="IDNguoiDung" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__IDNgu__4222D4EF">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="IDNguoiDung" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QL_BaiDoXeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="LoaiXes" EntityType="Self.LoaiXe" />
+    <EntitySet Name="ParkingSlots" EntityType="Self.ParkingSlot" />
+    <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__ParkingSl__MaLoa__3E52440B" Association="Self.FK__ParkingSl__MaLoa__3E52440B">
+      <End Role="LoaiXe" EntitySet="LoaiXes" />
+      <End Role="ParkingSlot" EntitySet="ParkingSlots" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__MaLoa__4316F928" Association="Self.FK__Transacti__MaLoa__4316F928">
+      <End Role="LoaiXe" EntitySet="LoaiXes" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ParkingSl__IDNgu__3D5E1FD2" Association="Self.FK__ParkingSl__IDNgu__3D5E1FD2">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ParkingSlot" EntitySet="ParkingSlots" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__IDNgu__4222D4EF" Association="Self.FK__Transacti__IDNgu__4222D4EF">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

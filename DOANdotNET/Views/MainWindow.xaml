@@ -1,0 +1,164 @@
+﻿<Window x:Class="DOANdotNET.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DOANdotNET.Views"
+        xmlns:vm="clr-namespace:DOANdotNET.ViewModels"
+        xmlns:uc="clr-namespace:DOANdotNET.Views.UserControls" 
+        mc:Ignorable="d"
+        Title="Quản Lý Bãi Đỗ Xe" Height="720" Width="1435"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type uc:ParkingMap}">
+            <uc:ParkingMap/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type uc:StaffManager}">
+            <uc:StaffManager/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type uc:Report}">
+            <uc:Report/>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type uc:Search}">
+            <uc:Search/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type uc:MyAccount}">
+            <uc:MyAccount/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type uc:VehicleTypeManager}">
+            <uc:VehicleTypeManager/>
+        </DataTemplate>
+
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+
+        <Style x:Key="NavBtn" TargetType="Button">
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Foreground" Value="#BDC3C7"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="4,0,0,0"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="20,0,0,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#34495E"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="BorderBrush" Value="#3498DB"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Background="#1A252F">
+            <DockPanel>
+
+                <StackPanel DockPanel.Dock="Top" Margin="0,30,0,20">
+                    <Border Width="60" Height="60" Background="#3498DB" CornerRadius="30" Margin="0,0,0,10">
+                        <TextBlock Text="P" Foreground="White" FontSize="32" FontWeight="Black" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,2"/>
+                    </Border>
+                    <TextBlock Text="HỆ THỐNG ĐỖ XE" Foreground="White" FontSize="16"
+                               FontWeight="Bold" HorizontalAlignment="Center"/>
+
+                    <TextBlock Text="{Binding TenDangNhap, StringFormat=Xin chào\, {0}}" Foreground="#3498DB"
+                               FontSize="13" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,10,0,2"/>
+                    <TextBlock Text="{Binding VaiTroHienThi}" Foreground="#95A5A6"
+                               FontSize="12" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Bottom" Margin="0,0,0,15">
+                    <Separator Background="#2C3E50" Margin="15,10"/>
+                    <Button Content="🚪  Đăng Xuất"
+            Command="{Binding LogoutCommand}"
+            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource NavBtn}">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Foreground" Value="#E74C3C"/>
+                                        <Setter Property="BorderBrush" Value="#E74C3C"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <TextBlock Text="{Binding StatusMessage}"
+               Foreground="#7F8C8D" FontSize="11" FontStyle="Italic"
+               Margin="24,8,12,0" TextWrapping="Wrap"/>
+                </StackPanel>
+
+                <StackPanel Margin="0,10,0,0">
+                    <Button Content="🗺️   Sơ Đồ Bãi Xe"
+                            Command="{Binding ShowParkingMapCommand}"
+                            Style="{StaticResource NavBtn}"
+                            Visibility="{Binding CanSeeReport, Converter={StaticResource BoolToVis}}"/>
+
+                    <Button Content="🔍   Tìm Kiếm Xe"
+                            Command="{Binding ShowSearchCommand}"
+                            Style="{StaticResource NavBtn}"/>
+
+                    <Button Content="👥   Quản Lý Nhân Sự"
+                            Command="{Binding ShowStaffCommand}"
+                            Style="{StaticResource NavBtn}"
+                            Visibility="{Binding CanSeeStaff, Converter={StaticResource BoolToVis}}"/>
+
+                    <Button Content="📊   Thống Kê Doanh Thu"
+                            Command="{Binding ShowReportCommand}"
+                            Style="{StaticResource NavBtn}"
+                            Visibility="{Binding CanSeeReport, Converter={StaticResource BoolToVis}}"/>
+                    <Button Content="🚗   Quản Lý Loại Xe"
+        Command="{Binding ShowVehicleTypeCommand}"
+        Style="{StaticResource NavBtn}"
+        Visibility="{Binding CanSeeVehicleType, Converter={StaticResource BoolToVis}}"/>
+
+                    
+
+                    <Button Content="👤   Tài Khoản Của Tôi"
+                            Command="{Binding ShowMyAccountCommand}"
+                            Style="{StaticResource NavBtn}"
+                            Visibility="{Binding CanSeeMyAccount, Converter={StaticResource BoolToVis}}"/>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <Grid Grid.Column="1" Background="#F5F6FA">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Background="White" BorderBrush="#E8EAED" BorderThickness="0,0,0,1">
+                <TextBlock FontSize="18" FontWeight="Bold" 
+                   Foreground="#2C3E50" VerticalAlignment="Center" Margin="20,0,0,0" Text="BÃI ĐỖ XE PPLQ XIN CHÀO !"/>
+            </Border>
+
+            <ContentControl Grid.Row="1" Content="{Binding CurrentView}"/>
+        </Grid>
+    </Grid>
+</Window>
