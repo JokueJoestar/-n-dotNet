@@ -10,6 +10,7 @@ namespace DOANdotNET.ViewModels.Services
     public class ParkingService
     {
         // Khởi tạo cầu nối trực tiếp đến CSDL
+        // TODO: Nên dùng using() hoặc DI để quản lý lifetime của DbContext
         private QL_BaiDoXeEntities _db = new QL_BaiDoXeEntities();
 
         public ParkingService()
@@ -19,6 +20,7 @@ namespace DOANdotNET.ViewModels.Services
         // ===== XÁC THỰC =====
         public User Authenticate(string id, string pw)
         {
+            // TODO: Nên hash mật khẩu bằng BCrypt/SHA256 trước khi so sánh (demo chưa implement)
             return _db.Users.FirstOrDefault(u => u.ID == id && u.MatKhau == pw);
         }
 
@@ -241,7 +243,7 @@ namespace DOANdotNET.ViewModels.Services
         public List<Transaction> GetTransactionsByDate(DateTime tuNgay, DateTime denNgay)
         {
             var denNgayCuoi = denNgay.Date.AddDays(1).AddTicks(-1);
-            return _db.Transactions.Where(t => t.ThoiGianVao >= tuNgay.Date && t.ThoiGianVao <= denNgayCuoi).ToList();
+            return _db.Transactions.Where(t => t.ThoiGianVao >= tuNgay.Date && t.ThoiGianVao <= denNgayCuoi && t.ThoiGianRa != null).ToList();
         }
 
         public decimal TinhPhiDuTinh(ParkingSlot slot)
