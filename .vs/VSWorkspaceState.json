@@ -3,8 +3,9 @@
     "",
     "\\DOANdotNET",
     "\\DOANdotNET\\ViewModels",
-    "\\DOANdotNET\\ViewModels\\Services"
+    "\\DOANdotNET\\ViewModels\\Services",
+    "\\DOANdotNET\\Views"
   ],
-  "SelectedNode": "\\QL_BaiDoXe.sql",
+  "SelectedNode": "\\DOANdotNET.sln",
   "PreviewInSolutionExplorer": false
 }

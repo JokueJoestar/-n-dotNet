@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-E:\DOANdotNET\DOANdotNET\obj\Debug\
+C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\
 DOANdotNET
 none
 false
 DEBUG;TRACE
-E:\DOANdotNET\DOANdotNET\App.xaml
+C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\App.xaml
 121054542142
 21367413597
 45914764654
-19-1730586067
+19405128128
 Views\MainWindow.xaml;Views\AddSlot.xaml;Views\CheckIn.xaml;Views\CheckOut.xaml;Views\Login.xaml;Views\UserControls\MyAccount.xaml;Views\UserControls\ParkingMap.xaml;Views\UserControls\ParkingSlot.xaml;Views\UserControls\Report.xaml;Views\UserControls\Search.xaml;Views\UserControls\StaffManager.xaml;Views\UserControls\VehicleTypeManager.xaml;
 
 False
