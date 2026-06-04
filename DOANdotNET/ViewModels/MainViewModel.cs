@@ -54,7 +54,9 @@ namespace DOANdotNET.ViewModels
         public ICommand LogoutCommand { get; private set; }
         public ICommand ShowVehicleTypeCommand { get; set; }
 
-       
+        public ICommand ShowRevenueChartCommand { get; private set; }
+        public ICommand ShowDashboardCommand { get; private set; }
+
         public ICommand ThucHienLogicCommand { get; set; }
 
         // --- THÔNG TIN PHÂN QUYỀN VÀ HIỂN THỊ NGƯỜI DÙNG ---
@@ -110,6 +112,16 @@ namespace DOANdotNET.ViewModels
                 p => { CurrentView = new VehicleTypeManager(); PageTitle = "QUẢN LÝ LOẠI XE"; },
                 
                 p => CanSeeVehicleType
+            );
+
+            ShowRevenueChartCommand = new RelayCommand(
+                p => { CurrentView = new RevenueChart(); PageTitle = "THỐNG KÊ DOANH THU"; },
+                p => CanSeeReport
+            );
+
+            ShowDashboardCommand = new RelayCommand(
+                p => { CurrentView = new Dashboard(); PageTitle = "DASHBOARD"; },
+                p => CanSeeReport
             );
 
             ShowMyAccountCommand = new RelayCommand(

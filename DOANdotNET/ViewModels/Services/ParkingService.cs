@@ -1,26 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DOANdotNET.Models;
 
 namespace DOANdotNET.ViewModels.Services
 {
     public class ParkingService
     {
-        // Khởi tạo cầu nối trực tiếp đến CSDL
-        // TODO: Nên dùng using() hoặc DI để quản lý lifetime của DbContext
         private QL_BaiDoXeEntities _db = new QL_BaiDoXeEntities();
 
-        public ParkingService()
-        {
-        }
+        public ParkingService() { }
 
         // ===== XÁC THỰC =====
         public User Authenticate(string id, string pw)
         {
-            // TODO: Nên hash mật khẩu bằng BCrypt/SHA256 trước khi so sánh (demo chưa implement)
             return _db.Users.FirstOrDefault(u => u.ID == id && u.MatKhau == pw);
         }
 
@@ -62,13 +55,13 @@ namespace DOANdotNET.ViewModels.Services
         {
             if (string.IsNullOrWhiteSpace(bienSo)) return null;
             string key = bienSo.Replace("-", "").Replace(" ", "").ToUpper();
-
             var slots = _db.ParkingSlots.Where(s => s.TrangThai == "Đang gửi" && s.BienSoXe != null).ToList();
             return slots.FirstOrDefault(s => s.BienSoXe.Replace("-", "").Replace(" ", "").ToUpper() == key);
         }
 
         public int CountTrong() => _db.ParkingSlots.Count(s => s.TrangThai == "Trống");
         public int CountCoXe() => _db.ParkingSlots.Count(s => s.TrangThai == "Đang gửi");
+        public int CountTongSlot() => _db.ParkingSlots.Count();
 
         public bool AddSlot(string idDoXe, string khuVuc)
         {
@@ -106,7 +99,6 @@ namespace DOANdotNET.ViewModels.Services
             slot.HinhAnhVao = hinhAnh;
             slot.ThoiGianVao = DateTime.Now;
 
-            // Ghi một phiếu rỗng vào sổ Transactions
             _db.Transactions.Add(new Transaction
             {
                 MaGiaoDich = "GD" + DateTime.Now.ToString("yyMMddHHmmss") + idDoXe,
@@ -122,7 +114,7 @@ namespace DOANdotNET.ViewModels.Services
                 HinhAnhVao = hinhAnh
             });
 
-            _db.SaveChanges(); // Cập nhật cả 2 bảng cùng lúc
+            _db.SaveChanges();
             return true;
         }
 
@@ -149,7 +141,6 @@ namespace DOANdotNET.ViewModels.Services
                 }
             }
 
-            // TÌM LẠI PHIẾU GIAO DỊCH KHI XE VÀO ĐỂ ĐIỀN NỐT GIỜ RA VÀ TIỀN
             var trans = _db.Transactions.FirstOrDefault(t => t.IDDoXe == idDoXe && t.ThoiGianRa == null);
             if (trans != null)
             {
@@ -158,7 +149,6 @@ namespace DOANdotNET.ViewModels.Services
             }
             else
             {
-
                 _db.Transactions.Add(new Transaction
                 {
                     MaGiaoDich = "GD" + DateTime.Now.ToString("yyMMddHHmmss") + idDoXe,
@@ -176,7 +166,6 @@ namespace DOANdotNET.ViewModels.Services
 
             tenKhachOut = slot.TenKhachHang;
 
-            // Reset slot về trống
             slot.TrangThai = "Trống";
             slot.TenKhachHang = null;
             slot.SoDienThoai = null;
@@ -187,7 +176,6 @@ namespace DOANdotNET.ViewModels.Services
             slot.ThoiGianVao = null;
 
             _db.SaveChanges();
-
             return tien;
         }
 
@@ -243,7 +231,9 @@ namespace DOANdotNET.ViewModels.Services
         public List<Transaction> GetTransactionsByDate(DateTime tuNgay, DateTime denNgay)
         {
             var denNgayCuoi = denNgay.Date.AddDays(1).AddTicks(-1);
-            return _db.Transactions.Where(t => t.ThoiGianVao >= tuNgay.Date && t.ThoiGianVao <= denNgayCuoi && t.ThoiGianRa != null).ToList();
+            return _db.Transactions
+                .Where(t => t.ThoiGianVao >= tuNgay.Date && t.ThoiGianVao <= denNgayCuoi && t.ThoiGianRa != null)
+                .ToList();
         }
 
         public decimal TinhPhiDuTinh(ParkingSlot slot)
@@ -255,5 +245,23 @@ namespace DOANdotNET.ViewModels.Services
             double gio = phut <= 60 ? 1 : Math.Ceiling(phut / 60.0);
             return (decimal)gio * phiGio;
         }
-    }
-}
+
+        // ===== DASHBOARD =====
+        public decimal GetDoanhThuHomNay()
+        {
+            var homNay = DateTime.Today;
+            return _db.Transactions
+                .Where(t => t.ThoiGianRa != null &&
+                       System.Data.Entity.DbFunctions.TruncateTime(t.ThoiGianRa) == homNay)
+                .Sum(t => (decimal?)t.ThanhTien) ?? 0;
+        }
+
+        public int GetLuotRaHomNay()
+        {
+            var homNay = DateTime.Today;
+            return _db.Transactions
+                .Count(t => t.ThoiGianRa != null &&
+                       System.Data.Entity.DbFunctions.TruncateTime(t.ThoiGianRa) == homNay);
+        }
+    }  // ← đóng class ParkingService
+}      // ← đóng namespace

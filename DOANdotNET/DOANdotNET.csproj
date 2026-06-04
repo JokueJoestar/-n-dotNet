@@ -127,9 +127,11 @@
     <Compile Include="ViewModels\Services\SessionManager.cs" />
     <Compile Include="ViewModels\LoginViewModels.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\UCViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\UCViewModels\MyAccountViewModel.cs" />
     <Compile Include="ViewModels\UCViewModels\ParkingMapViewModel.cs" />
     <Compile Include="ViewModels\UCViewModels\ReportViewModel.cs" />
+    <Compile Include="ViewModels\UCViewModels\RevenueChartViewModel.cs" />
     <Compile Include="ViewModels\UCViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\UCViewModels\StaffManagerViewModel.cs" />
     <Compile Include="ViewModels\UCViewModels\VehicleTypeViewModel.cs" />
@@ -145,6 +147,10 @@
     <Compile Include="Views\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ReportWindow.xaml.cs">
+      <DependentUpon>ReportWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Dashboard.cs" />
     <Compile Include="Views\UserControls\MyAccount.xaml.cs">
       <DependentUpon>MyAccount.xaml</DependentUpon>
     </Compile>
@@ -156,6 +162,9 @@
     </Compile>
     <Compile Include="Views\UserControls\Report.xaml.cs">
       <DependentUpon>Report.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\RevenueChart.xaml.cs">
+      <DependentUpon>RevenueChart.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\Search.xaml.cs">
       <DependentUpon>Search.xaml</DependentUpon>
@@ -194,6 +203,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ReportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Dashboard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\UserControls\MyAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -207,6 +224,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\Report.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\RevenueChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

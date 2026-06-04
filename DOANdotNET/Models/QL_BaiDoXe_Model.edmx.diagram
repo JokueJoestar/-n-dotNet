@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="87f6291195f84c8d891521963f0ce266" Name="Diagram1">
+      <Diagram DiagramId="87f6291195f84c8d891521963f0ce266" Name="Diagram1" ZoomLevel="88">
         <EntityTypeShape EntityType="QL_BaiDoXeModel.LoaiXe" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_BaiDoXeModel.ParkingSlot" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="QL_BaiDoXeModel.Transaction" Width="1.5" PointX="6" PointY="3.875" IsExpanded="true" />

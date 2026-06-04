@@ -134,3 +134,9 @@ C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\DOANdotNET.c
 C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\DOANdotNET.exe
 C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\DOANdotNET.pdb
 C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\DOANdotNET.exe.config
+C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\ReportWindow.baml
+C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\ReportWindow.g.cs
+C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\Dashboard.g.cs
+C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\RevenueChart.g.cs
+C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\Dashboard.baml
+C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\RevenueChart.baml

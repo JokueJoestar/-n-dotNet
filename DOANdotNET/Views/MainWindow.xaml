@@ -35,6 +35,13 @@
             <uc:VehicleTypeManager/>
         </DataTemplate>
 
+		<DataTemplate DataType="{x:Type uc:Dashboard}">
+			<uc:Dashboard/>
+		</DataTemplate>
+		<DataTemplate DataType="{x:Type uc:RevenueChart}">
+			<uc:RevenueChart/>
+		</DataTemplate>
+		
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
 
         <Style x:Key="NavBtn" TargetType="Button">
@@ -114,6 +121,11 @@
                 </StackPanel>
 
                 <StackPanel Margin="0,10,0,0">
+					<Button Content="📊   Dashboard"
+                            Command="{Binding ShowDashboardCommand}"
+                            Style="{StaticResource NavBtn}"
+                            Visibility="{Binding CanSeeReport, Converter={StaticResource BoolToVis}}"/>
+					
                     <Button Content="🗺️   Sơ Đồ Bãi Xe"
                             Command="{Binding ShowParkingMapCommand}"
                             Style="{StaticResource NavBtn}"
@@ -128,10 +140,11 @@
                             Style="{StaticResource NavBtn}"
                             Visibility="{Binding CanSeeStaff, Converter={StaticResource BoolToVis}}"/>
 
-                    <Button Content="📊   Thống Kê Doanh Thu"
-                            Command="{Binding ShowReportCommand}"
+					<Button Content="📈   Biểu Đồ Doanh Thu"
+                            Command="{Binding ShowRevenueChartCommand}"
                             Style="{StaticResource NavBtn}"
                             Visibility="{Binding CanSeeReport, Converter={StaticResource BoolToVis}}"/>
+
                     <Button Content="🚗   Quản Lý Loại Xe"
         Command="{Binding ShowVehicleTypeCommand}"
         Style="{StaticResource NavBtn}"
