@@ -14,7 +14,8 @@ namespace DOANdotNET.ViewModels.Services
         // ===== XÁC THỰC =====
         public User Authenticate(string id, string pw)
         {
-            return _db.Users.FirstOrDefault(u => u.ID == id && u.MatKhau == pw);
+            using (var db = new QL_BaiDoXeEntities())
+                return db.Users.FirstOrDefault(u => u.ID == id && u.MatKhau == pw);
         }
 
         // ===== LOẠI XE =====

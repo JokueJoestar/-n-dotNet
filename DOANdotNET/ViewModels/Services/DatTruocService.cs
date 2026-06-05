@@ -10,21 +10,14 @@ namespace DOANdotNET.ViewModels.Services
     {
         private SqlConnection OpenConn()
         {
-            var ctx = new QL_BaiDoXeEntities();
-            var efConn = ctx.Database.Connection.ConnectionString;
-            ctx.Dispose();
-
-            var match = Regex.Match(efConn,
-                @"provider connection string=""([^""]+)""",
-                RegexOptions.IgnoreCase);
-
-            string sqlConnStr = match.Success
-                ? match.Groups[1].Value.Replace("&quot;", "\"")
-                : efConn;
-
-            var conn = new SqlConnection(sqlConnStr);
-            conn.Open();
-            return conn;
+            using (var ctx = new QL_BaiDoXeEntities())
+            {
+                // Lấy SqlConnection từ EF context luôn, không cần parse
+                var efConn = ctx.Database.Connection.ConnectionString;
+                var conn = new SqlConnection(efConn);
+                conn.Open();
+                return conn;
+            }
         }
 
         private DatTruoc DocDong(SqlDataReader rdr)
