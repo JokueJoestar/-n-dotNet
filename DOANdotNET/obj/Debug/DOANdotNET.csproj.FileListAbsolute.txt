@@ -140,3 +140,7 @@ C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserCo
 C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\RevenueChart.g.cs
 C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\Dashboard.baml
 C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\RevenueChart.baml
+C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\DatTruoc.g.cs
+C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\DatTruoc.baml
+C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\QuanLyDatTruoc.g.cs
+C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\QuanLyDatTruoc.baml

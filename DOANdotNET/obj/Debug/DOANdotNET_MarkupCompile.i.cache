@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\App.xaml
-15-723810644
+171997631280
 21367413597
-501002862150
+56-307027636
 19405128128
-Views\MainWindow.xaml;Views\AddSlot.xaml;Views\CheckIn.xaml;Views\CheckOut.xaml;Views\Login.xaml;Views\ReportWindow.xaml;Views\UserControls\Dashboard.xaml;Views\UserControls\MyAccount.xaml;Views\UserControls\ParkingMap.xaml;Views\UserControls\ParkingSlot.xaml;Views\UserControls\Report.xaml;Views\UserControls\RevenueChart.xaml;Views\UserControls\Search.xaml;Views\UserControls\StaffManager.xaml;Views\UserControls\VehicleTypeManager.xaml;
+Views\MainWindow.xaml;Views\AddSlot.xaml;Views\CheckIn.xaml;Views\CheckOut.xaml;Views\Login.xaml;Views\ReportWindow.xaml;Views\UserControls\Dashboard.xaml;Views\UserControls\DatTruoc.xaml;Views\UserControls\MyAccount.xaml;Views\UserControls\ParkingMap.xaml;Views\UserControls\ParkingSlot.xaml;Views\UserControls\QuanLyDatTruoc.xaml;Views\UserControls\Report.xaml;Views\UserControls\RevenueChart.xaml;Views\UserControls\Search.xaml;Views\UserControls\StaffManager.xaml;Views\UserControls\VehicleTypeManager.xaml;
 
 True
 

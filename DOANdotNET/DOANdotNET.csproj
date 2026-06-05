@@ -85,6 +85,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\DatTruoc.cs" />
     <Compile Include="Models\LoaiXe.cs">
       <DependentUpon>QL_BaiDoXe_Model.tt</DependentUpon>
     </Compile>
@@ -123,13 +124,16 @@
     <Compile Include="ViewModels\Helpers\PasswordConverter.cs" />
     <Compile Include="ViewModels\Helpers\PasswordHelper.cs" />
     <Compile Include="ViewModels\Helpers\RelayCommand.cs" />
+    <Compile Include="ViewModels\Services\DatTruocService.cs" />
     <Compile Include="ViewModels\Services\ParkingService.cs" />
     <Compile Include="ViewModels\Services\SessionManager.cs" />
     <Compile Include="ViewModels\LoginViewModels.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\UCViewModels\DashboardViewModel.cs" />
+    <Compile Include="ViewModels\UCViewModels\DatTruocViewModel.cs" />
     <Compile Include="ViewModels\UCViewModels\MyAccountViewModel.cs" />
     <Compile Include="ViewModels\UCViewModels\ParkingMapViewModel.cs" />
+    <Compile Include="ViewModels\UCViewModels\QuanLyDatTruocViewModel.cs" />
     <Compile Include="ViewModels\UCViewModels\ReportViewModel.cs" />
     <Compile Include="ViewModels\UCViewModels\RevenueChartViewModel.cs" />
     <Compile Include="ViewModels\UCViewModels\SearchViewModel.cs" />
@@ -151,6 +155,9 @@
       <DependentUpon>ReportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\Dashboard.cs" />
+    <Compile Include="Views\UserControls\DatTruoc.xaml.cs">
+      <DependentUpon>DatTruoc.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\MyAccount.xaml.cs">
       <DependentUpon>MyAccount.xaml</DependentUpon>
     </Compile>
@@ -159,6 +166,9 @@
     </Compile>
     <Compile Include="Views\UserControls\ParkingSlot.xaml.cs">
       <DependentUpon>ParkingSlot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\QuanLyDatTruoc.xaml.cs">
+      <DependentUpon>QuanLyDatTruoc.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\Report.xaml.cs">
       <DependentUpon>Report.xaml</DependentUpon>
@@ -211,6 +221,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\UserControls\DatTruoc.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\UserControls\MyAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -220,6 +234,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\ParkingSlot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\QuanLyDatTruoc.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

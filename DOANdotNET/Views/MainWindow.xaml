@@ -41,7 +41,15 @@
 		<DataTemplate DataType="{x:Type uc:RevenueChart}">
 			<uc:RevenueChart/>
 		</DataTemplate>
-		
+
+        <DataTemplate DataType="{x:Type uc:DatTruoc}">
+            <uc:DatTruoc/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type uc:QuanLyDatTruoc}">
+            <uc:QuanLyDatTruoc/>
+        </DataTemplate>
+
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
 
         <Style x:Key="NavBtn" TargetType="Button">
@@ -140,22 +148,33 @@
                             Style="{StaticResource NavBtn}"
                             Visibility="{Binding CanSeeStaff, Converter={StaticResource BoolToVis}}"/>
 
-					<Button Content="📈   Biểu Đồ Doanh Thu"
+                    <Button Content="📋   Quản Lý Đặt Trước"
+        Command="{Binding ShowQuanLyDatTruocCommand}"
+        Style="{StaticResource NavBtn}"
+        Visibility="{Binding CanSeeQuanLyDatTruoc,
+            Converter={StaticResource BoolToVis}}"/>
+
+                    <Button Content="📈   Biểu Đồ Doanh Thu"
                             Command="{Binding ShowRevenueChartCommand}"
                             Style="{StaticResource NavBtn}"
                             Visibility="{Binding CanSeeReport, Converter={StaticResource BoolToVis}}"/>
 
                     <Button Content="🚗   Quản Lý Loại Xe"
-        Command="{Binding ShowVehicleTypeCommand}"
-        Style="{StaticResource NavBtn}"
-        Visibility="{Binding CanSeeVehicleType, Converter={StaticResource BoolToVis}}"/>
-
-                    
+                            Command="{Binding ShowVehicleTypeCommand}"
+                            Style="{StaticResource NavBtn}"
+                            Visibility="{Binding CanSeeVehicleType, Converter={StaticResource BoolToVis}}"/>
 
                     <Button Content="👤   Tài Khoản Của Tôi"
                             Command="{Binding ShowMyAccountCommand}"
                             Style="{StaticResource NavBtn}"
                             Visibility="{Binding CanSeeMyAccount, Converter={StaticResource BoolToVis}}"/>
+
+                    <Button Content="📅   Đặt Chỗ Trước"
+                            Command="{Binding ShowDatTruocCommand}"
+                            Style="{StaticResource NavBtn}"
+                            Visibility="{Binding CanSeeDatTruoc,
+                                Converter={StaticResource BoolToVis}}"/>
+
                 </StackPanel>
             </DockPanel>
         </Border>

@@ -1,0 +1,410 @@
+<UserControl x:Class="DOANdotNET.Views.UserControls.DatTruoc"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:vm="clr-namespace:DOANdotNET.ViewModels.UCViewModels"
+             mc:Ignorable="d" d:DesignHeight="620" d:DesignWidth="860">
+
+    <UserControl.DataContext>
+        <vm:DatTruocViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+
+        <Style x:Key="PrimaryBtn" TargetType="Button">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd" CornerRadius="8"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Opacity" Value="0.85"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="bd" Property="Opacity" Value="0.4"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="GhostBtn" TargetType="Button">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#5F5E5A"/>
+            <Setter Property="BorderBrush" Value="#D3D1C7"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd" CornerRadius="8"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#F1EFE8"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="FieldLabel" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#5F5E5A"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="BorderBrush" Value="#D3D1C7"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="bd" CornerRadius="8"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          Padding="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="bd" Property="BorderBrush" Value="#378ADD"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="#F5F6FA">
+
+        <!-- ══ TAB 0: ĐẶT TRƯỚC ══ -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      Visibility="{Binding IsTabDat, Converter={StaticResource BoolToVis}}">
+            <StackPanel MaxWidth="560" Margin="0,30,0,30"
+                        HorizontalAlignment="Center">
+
+                <Border Background="White" CornerRadius="14"
+                        BorderBrush="#E8EAED" BorderThickness="1"
+                        Padding="30,26">
+                    <StackPanel>
+
+                        <TextBlock Text="Đặt chỗ trước" FontSize="18"
+                                   FontWeight="Bold" Foreground="#1A1A1A"/>
+                        <TextBlock Text="Chọn khu vực và loại xe, hệ thống sẽ tự xếp chỗ phù hợp"
+                                   FontSize="12" Foreground="#888780" Margin="0,4,0,24"/>
+
+                        <!-- Khu vực -->
+                        <TextBlock Text="KHU VỰC" Style="{StaticResource FieldLabel}"/>
+                        <ComboBox ItemsSource="{Binding DanhSachKhuVuc}"
+                                  SelectedItem="{Binding KhuVucChon}"
+                                  Height="40" FontSize="13"
+                                  BorderBrush="#D3D1C7" Margin="0,0,0,4"/>
+                        <TextBlock Text="{Binding SoSlotThongBao}"
+                                   FontSize="11" Margin="2,0,0,16"
+                                   Foreground="#27AE60"/>
+
+                        <!-- Loại xe -->
+                        <TextBlock Text="LOẠI XE" Style="{StaticResource FieldLabel}"/>
+                        <ComboBox ItemsSource="{Binding DanhSachLoaiXe}"
+                                  SelectedItem="{Binding LoaiXeChon}"
+                                  DisplayMemberPath="TenLoaiXe"
+                                  Height="40" FontSize="13"
+                                  BorderBrush="#D3D1C7" Margin="0,0,0,8"/>
+
+                        <!-- Hiện giá loại xe đang chọn -->
+                        <TextBlock FontSize="12" Foreground="#185FA5"
+                                   Margin="2,0,0,16"
+                                   Visibility="{Binding LoaiXeChon,
+                                       Converter={StaticResource BoolToVis}}">
+                            <Run Text="Giá đỗ xe: "/>
+                            <Run Text="{Binding LoaiXeChon.GiaDoXe,
+                                StringFormat={}{0:N0} đ/giờ}"/>
+                        </TextBlock>
+
+                        <!-- Ngày + Giờ đến -->
+                        <Grid Margin="0,0,0,24">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="12"/>
+                                <ColumnDefinition Width="150"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="NGÀY ĐẾN" Style="{StaticResource FieldLabel}"/>
+                                <DatePicker SelectedDate="{Binding NgayDen}"
+                                            DisplayDateStart="{x:Static sys:DateTime.Today}"
+                                            Height="40" FontSize="13" BorderBrush="#D3D1C7"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="GIỜ ĐẾN  (HH:mm)"
+                                           Style="{StaticResource FieldLabel}"/>
+                                <TextBox Text="{Binding GioDen,
+                                                        UpdateSourceTrigger=PropertyChanged}"
+                                         MaxLength="5"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <!-- Thông báo kết quả (banner nhỏ bên dưới) -->
+                        <Border CornerRadius="8" Padding="14,10" Margin="0,0,0,20"
+                                Visibility="{Binding ThongBaoDat,
+                                    Converter={StaticResource BoolToVis}}">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="Background" Value="#EAF3DE"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding DatThanhCong}" Value="False">
+                                            <Setter Property="Background" Value="#FCEBEB"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <TextBlock Text="{Binding ThongBaoDat}"
+                                       FontSize="12" TextWrapping="Wrap" LineHeight="20">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="#27500A"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding DatThanhCong}" Value="False">
+                                                <Setter Property="Foreground" Value="#791F1F"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Border>
+
+                        <!-- Buttons -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Content="✓  Đặt chỗ"
+                                    Command="{Binding DatTruocCommand}"
+                                    Style="{StaticResource PrimaryBtn}"
+                                    Background="#378ADD"/>
+                            <Button Grid.Column="2" Content="Làm mới"
+                                    Command="{Binding LamMoiCommand}"
+                                    Style="{StaticResource GhostBtn}"/>
+                        </Grid>
+
+                    </StackPanel>
+                </Border>
+
+                <Button Content="📋   Xem lịch sử đặt trước của tôi"
+                        Command="{Binding XemLichSuCommand}"
+                        Style="{StaticResource GhostBtn}"
+                        Margin="0,12,0,0"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- ══ TAB 1: LỊCH SỬ ══ -->
+        <Grid Visibility="{Binding IsTabLichSu, Converter={StaticResource BoolToVis}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <Border Grid.Row="0" Background="White"
+                    BorderBrush="#E8EAED" BorderThickness="0,0,0,1"
+                    Padding="24,16">
+                <Grid>
+                    <StackPanel>
+                        <TextBlock Text="Lịch sử đặt trước" FontSize="16"
+                                   FontWeight="Bold" Foreground="#1A1A1A"/>
+                        <TextBlock Text="Tất cả các lần đặt chỗ của bạn"
+                                   FontSize="12" Foreground="#888780" Margin="0,2,0,0"/>
+                    </StackPanel>
+                    <Button Content="← Đặt chỗ mới"
+                            Command="{Binding QuayLaiCommand}"
+                            Style="{StaticResource GhostBtn}"
+                            Width="130" HorizontalAlignment="Right"/>
+                </Grid>
+            </Border>
+
+            <!-- Danh sách booking -->
+            <ListBox Grid.Row="1"
+         ItemsSource="{Binding LichSu}"
+         SelectedItem="{Binding BookingChon}"
+         BorderThickness="0"
+         Background="Transparent"
+         ScrollViewer.VerticalScrollBarVisibility="Auto"
+         Padding="24,16,24,0">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Padding" Value="0"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="White" CornerRadius="10"
+                    BorderThickness="2" Margin="0,0,0,10"
+                    Padding="18,14">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="BorderBrush" Value="#E8EAED"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsSelected,
+                                RelativeSource={RelativeSource AncestorType=ListBoxItem}}"
+                                Value="True">
+                                            <Setter Property="BorderBrush" Value="#378ADD"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                        <TextBlock Text="{Binding KhuVuc}"
+                                       FontSize="15" FontWeight="Bold"
+                                       Foreground="#185FA5"/>
+                                        <TextBlock Text=" — " Foreground="#888780" FontSize="14"/>
+                                        <TextBlock Text="{Binding LoaiXe.TenLoaiXe}"
+                                       FontSize="14" Foreground="#1A1A1A"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                        <TextBlock Text="🕐  " FontSize="12" Foreground="#888780"/>
+                                        <TextBlock Text="{Binding ThoiGianDenHienThi}"
+                                       FontSize="12" Foreground="#5F5E5A"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4"
+                                    Visibility="{Binding IDDoXe,
+                                        Converter={StaticResource BoolToVis}}">
+                                        <TextBlock Text="📍  Chỗ: " FontSize="12" Foreground="#888780"/>
+                                        <TextBlock Text="{Binding IDDoXe}"
+                                       FontSize="12" FontWeight="SemiBold"
+                                       Foreground="#185FA5"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="💵  Giá: " FontSize="12" Foreground="#888780"/>
+                                        <TextBlock Text="{Binding GiaHienThi}"
+                                       FontSize="12" FontWeight="SemiBold"
+                                       Foreground="#27AE60"/>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <!-- Cột phải: Badge + nút Hủy -->
+                                <StackPanel Grid.Column="1" VerticalAlignment="Top"
+                                HorizontalAlignment="Right">
+                                    <!-- Badge trạng thái -->
+                                    <Border CornerRadius="20" Padding="10,4"
+                                HorizontalAlignment="Right"
+                                Background="{Binding TrangThaiMau}">
+                                        <TextBlock Text="{Binding TrangThai}"
+                                       FontSize="11" FontWeight="SemiBold"
+                                       Foreground="White"/>
+                                    </Border>
+
+                                    <!-- Nút Hủy — chỉ hiện khi CoTheHuy -->
+                                    <Button Content="🗑 Hủy"
+                                Margin="0,8,0,0"
+                                Height="30" Padding="12,0"
+                                FontSize="12" FontWeight="SemiBold"
+                                Foreground="White" Background="#E74C3C"
+                                BorderThickness="0" Cursor="Hand"
+                                Visibility="{Binding CoTheHuy,
+                                    Converter={StaticResource BoolToVis}}"
+                                Command="{Binding DataContext.HuyCommand,
+                                    RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                CommandParameter="{Binding}">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border x:Name="bd" CornerRadius="6"
+                                            Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter TargetName="bd" Property="Opacity" Value="0.8"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <!-- Action bar: hủy booking đang chọn -->
+            <Border Grid.Row="2" Background="White"
+                    BorderBrush="#E8EAED" BorderThickness="0,1,0,0"
+                    Padding="24,14">
+                <Grid>
+                    <TextBlock Text="Chọn một booking rồi nhấn Hủy nếu cần"
+                               FontSize="12" Foreground="#888780"
+                               VerticalAlignment="Center"
+                               Visibility="{Binding CoTheHuy,
+                                   Converter={StaticResource BoolToVis},
+                                   ConverterParameter=Inverse}"/>
+                    <Button Content="🗑  Hủy đặt trước đã chọn"
+                            Command="{Binding HuyCommand}"
+                            Style="{StaticResource PrimaryBtn}"
+                            Background="#E74C3C" Width="200"
+                            HorizontalAlignment="Right"
+                            Visibility="{Binding CoTheHuy,
+                                Converter={StaticResource BoolToVis}}"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

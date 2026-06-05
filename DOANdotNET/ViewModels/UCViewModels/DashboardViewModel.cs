@@ -7,6 +7,7 @@ namespace DOANdotNET.ViewModels.UCViewModels
     public class DashboardViewModel : BaseViewModel
     {
         private readonly ParkingService _service;
+        private readonly DatTruocService _datTruocService;
 
         private int _tongSlot;
         public int TongSlot
@@ -43,11 +44,20 @@ namespace DOANdotNET.ViewModels.UCViewModels
             set => SetProperty(ref _luotRaHomNay, value);
         }
 
+        private int _soDangDatTruoc;
+        public int SoDangDatTruoc
+        {
+            get => _soDangDatTruoc;
+            set => SetProperty(ref _soDangDatTruoc, value);
+        }
+
         public ICommand RefreshCommand { get; }
 
         public DashboardViewModel()
         {
             _service = new ParkingService();
+            _datTruocService = new DatTruocService();
+
             RefreshCommand = new RelayCommand(_ => LoadData());
             LoadData();
         }
@@ -59,6 +69,7 @@ namespace DOANdotNET.ViewModels.UCViewModels
             OTrong = _service.CountTrong();
             DoanhThuHomNay = _service.GetDoanhThuHomNay();
             LuotRaHomNay = _service.GetLuotRaHomNay();
+            SoDangDatTruoc = _datTruocService.DemDangDatTruoc();
         }
     }
 }

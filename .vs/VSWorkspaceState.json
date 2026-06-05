@@ -2,9 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\DOANdotNET",
+    "\\DOANdotNET\\bin",
+    "\\DOANdotNET\\bin\\Debug",
+    "\\DOANdotNET\\Models",
     "\\DOANdotNET\\ViewModels",
+    "\\DOANdotNET\\ViewModels\\UCViewModels",
     "\\DOANdotNET\\Views"
   ],
-  "SelectedNode": "\\DOANdotNET.sln",
+  "SelectedNode": "\\DOANdotNET\\App.config",
   "PreviewInSolutionExplorer": false
 }

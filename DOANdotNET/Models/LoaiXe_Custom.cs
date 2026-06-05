@@ -3,17 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DOANdotNET.ViewModels.Helpers;
 
 namespace DOANdotNET.Models
 {
-    public partial class LoaiXe : BaseViewModel
+    public partial class LoaiXe
     {
+        // ── Thêm GiaDoXe alias PhiMoiGio ──────────────────────────
+        public decimal GiaDoXe
+        {
+            get => PhiMoiGio;
+            set => PhiMoiGio = value;
+        }
+
+        // ── SoXeDangGui dùng field thông thường ───────────────────
         private int _soXeDangGui;
         public int SoXeDangGui
         {
             get => _soXeDangGui;
-            set => SetProperty(ref _soXeDangGui, value);
+            set
+            {
+                _soXeDangGui = value;
+            }
         }
     }
 }

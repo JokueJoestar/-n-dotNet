@@ -59,6 +59,10 @@ namespace DOANdotNET.ViewModels
 
         public ICommand ThucHienLogicCommand { get; set; }
 
+        public ICommand ShowDatTruocCommand { get; private set; }
+
+        public ICommand ShowQuanLyDatTruocCommand { get; private set; }
+
         // --- THÔNG TIN PHÂN QUYỀN VÀ HIỂN THỊ NGƯỜI DÙNG ---
         public string TenDangNhap => SessionManager.CurrentUser != null ? SessionManager.CurrentUser.HoTen : "Chưa đăng nhập";
         public string VaiTroHienThi => SessionManager.CurrentUser != null ? SessionManager.CurrentUser.VaiTroHienThi : "";
@@ -68,16 +72,21 @@ namespace DOANdotNET.ViewModels
         public bool CanSeeVehicleType => SessionManager.IsAdmin;
         public bool CanSeeMyAccount => SessionManager.CurrentUser != null;
 
+        public bool CanSeeDatTruoc => SessionManager.IsKhachHang;
+
+        public bool CanSeeQuanLyDatTruoc => SessionManager.IsAdmin || SessionManager.IsNhanVien;
+
+
         // HÀM KHỞI TẠO DUY NHẤT
         public MainViewModel()
         {
-            
+
 
             // BẮT ĐẦU SỬA TỪ ĐÂY
             if (SessionManager.IsKhachHang)
             {
-                CurrentView = new Search();
-                PageTitle = "TÌM KIẾM XE";
+                CurrentView = new DatTruoc();
+                PageTitle = "ĐẶT CHỖ TRƯỚC";
             }
             else
             {
@@ -127,6 +136,16 @@ namespace DOANdotNET.ViewModels
             ShowMyAccountCommand = new RelayCommand(
                 p => { CurrentView = new MyAccount(); PageTitle = "TÀI KHOẢN CỦA TÔI"; },
                 p => CanSeeMyAccount
+            );
+
+            ShowDatTruocCommand = new RelayCommand(
+            p => { CurrentView = new DatTruoc(); PageTitle = "ĐẶT CHỖ TRƯỚC"; },
+            p => CanSeeDatTruoc
+            );
+
+            ShowQuanLyDatTruocCommand = new RelayCommand(
+            p => { CurrentView = new QuanLyDatTruoc(); PageTitle = "QUẢN LÝ ĐẶT TRƯỚC"; },
+            p => CanSeeQuanLyDatTruoc
             );
 
             // LOGIC NÚT ĐĂNG XUẤT
