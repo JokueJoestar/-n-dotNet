@@ -1,16 +1,12 @@
 ﻿-- ============================================================
---   HỆ THỐNG QUẢN LÝ BÃI ĐỖ XE - PPLQ
---   File SQL Demo hoàn chỉnh
---   Bao gồm: Cấu trúc DB + Dữ liệu demo đầy đủ
---   Tác giả: Trần Nhật Phước
+--  QL_BaiDoXe - Script tạo database + dữ liệu demo
+--  Bao gồm: Users, LoaiXe, ParkingSlot, Transactions, DatTruoc
+--  Chạy bằng SSMS, kết nối: LAPTOP-IAOD51E6\SQLEXPRESS
 -- ============================================================
 
 USE master;
 GO
 
--- ============================================================
--- BƯỚC 1: TẠO DATABASE
--- ============================================================
 IF EXISTS (SELECT name FROM sys.databases WHERE name = N'QL_BaiDoXe')
 BEGIN
     ALTER DATABASE QL_BaiDoXe SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
@@ -25,416 +21,230 @@ USE QL_BaiDoXe;
 GO
 
 -- ============================================================
--- BƯỚC 2: TẠO BẢNG
+--  BẢNG: Users
 -- ============================================================
-
--- Bảng Loại Xe
-CREATE TABLE LoaiXe (
-    MaLoaiXe  VARCHAR(20)    NOT NULL PRIMARY KEY,
-    TenLoaiXe NVARCHAR(50)   NOT NULL,
-    PhiMoiGio DECIMAL(18, 0) NOT NULL DEFAULT 0
-);
-GO
-
--- Bảng Users (admin / nhanvien / khachhang)
 CREATE TABLE Users (
-    ID      VARCHAR(50)   NOT NULL PRIMARY KEY,
-    HoTen   NVARCHAR(100) NOT NULL,
-    SDT     VARCHAR(15)   NULL,
-    BienSo  VARCHAR(20)   NULL,
-    VaiTro  VARCHAR(20)   NOT NULL,   -- 'admin' | 'nhanvien' | 'khachhang'
-    MatKhau VARCHAR(255)  NULL,
-    NgayTao DATETIME      NOT NULL DEFAULT GETDATE()
-);
-GO
-
--- Bảng Vị trí đỗ xe
-CREATE TABLE ParkingSlot (
-    IDDoXe       VARCHAR(20)    NOT NULL PRIMARY KEY,
-    KhuVuc       NVARCHAR(50)   NOT NULL,
-    IDNguoiDung  VARCHAR(50)    NULL FOREIGN KEY REFERENCES Users(ID),
-    TenKhachHang NVARCHAR(100)  NULL,
-    SoDienThoai  VARCHAR(15)    NULL,
-    BienSoXe     VARCHAR(20)    NULL,
-    ThoiGianVao  DATETIME       NULL,
-    MaLoaiXe     VARCHAR(20)    NULL FOREIGN KEY REFERENCES LoaiXe(MaLoaiXe),
-    HinhAnhVao   NVARCHAR(MAX)  NULL,
-    TrangThai    NVARCHAR(20)   NOT NULL DEFAULT N'Trống'
-);
-GO
-
--- Bảng Giao dịch
-CREATE TABLE Transactions (
-    MaGiaoDich   VARCHAR(50)    NOT NULL PRIMARY KEY,
-    IDNguoiDung  VARCHAR(50)    NULL FOREIGN KEY REFERENCES Users(ID),
-    IDDoXe       VARCHAR(20)    NULL,
-    TenKhachHang NVARCHAR(100)  NULL,
-    SoDienThoai  VARCHAR(15)    NULL,
-    BienSoXe     VARCHAR(20)    NOT NULL,
-    MaLoaiXe     VARCHAR(20)    NOT NULL FOREIGN KEY REFERENCES LoaiXe(MaLoaiXe),
-    ThoiGianVao  DATETIME       NOT NULL,
-    ThoiGianRa   DATETIME       NULL,
-    ThanhTien    DECIMAL(18, 0) NOT NULL DEFAULT 0,
-    HinhAnhVao   NVARCHAR(MAX)  NULL,
-    HinhAnhRa    NVARCHAR(MAX)  NULL
+    ID          VARCHAR(50)     NOT NULL PRIMARY KEY,
+    HoTen       NVARCHAR(100)   NOT NULL,
+    SDT         VARCHAR(15)     NULL,
+    BienSo      VARCHAR(20)     NULL,
+    VaiTro      VARCHAR(20)     NOT NULL,   -- 'admin' | 'nhanvien' | 'khachhang'
+    MatKhau     VARCHAR(255)    NULL,
+    NgayTao     DATETIME        NOT NULL DEFAULT GETDATE()
 );
 GO
 
 -- ============================================================
--- BƯỚC 3: LOẠI XE (5 loại)
+--  BẢNG: LoaiXe
+-- ============================================================
+CREATE TABLE LoaiXe (
+    MaLoaiXe    VARCHAR(20)     NOT NULL PRIMARY KEY,
+    TenLoaiXe   NVARCHAR(50)    NOT NULL,
+    PhiMoiGio   DECIMAL(18,0)   NOT NULL
+);
+GO
+
+-- ============================================================
+--  BẢNG: ParkingSlot
+-- ============================================================
+CREATE TABLE ParkingSlot (
+    IDDoXe          VARCHAR(20)     NOT NULL PRIMARY KEY,
+    KhuVuc          NVARCHAR(50)    NOT NULL,
+    IDNguoiDung     VARCHAR(50)     NULL,
+    TenKhachHang    NVARCHAR(100)   NULL,
+    SoDienThoai     VARCHAR(15)     NULL,
+    BienSoXe        VARCHAR(20)     NULL,
+    ThoiGianVao     DATETIME        NULL,
+    MaLoaiXe        VARCHAR(20)     NULL,
+    HinhAnhVao      NVARCHAR(MAX)   NULL,
+    TrangThai       NVARCHAR(20)    NOT NULL DEFAULT N'Trống',
+
+    CONSTRAINT FK_ParkingSlot_Users  FOREIGN KEY (IDNguoiDung) REFERENCES Users(ID),
+    CONSTRAINT FK_ParkingSlot_LoaiXe FOREIGN KEY (MaLoaiXe)    REFERENCES LoaiXe(MaLoaiXe)
+);
+GO
+
+-- ============================================================
+--  BẢNG: Transactions
+-- ============================================================
+CREATE TABLE Transactions (
+    MaGiaoDich      VARCHAR(50)     NOT NULL PRIMARY KEY,
+    IDNguoiDung     VARCHAR(50)     NULL,
+    IDDoXe          VARCHAR(20)     NULL,
+    TenKhachHang    NVARCHAR(100)   NULL,
+    SoDienThoai     VARCHAR(15)     NULL,
+    BienSoXe        VARCHAR(20)     NOT NULL,
+    MaLoaiXe        VARCHAR(20)     NOT NULL,
+    ThoiGianVao     DATETIME        NOT NULL,
+    ThoiGianRa      DATETIME        NULL,
+    ThanhTien       DECIMAL(18,0)   NOT NULL DEFAULT 0,
+    HinhAnhVao      NVARCHAR(MAX)   NULL,
+    HinhAnhRa       NVARCHAR(MAX)   NULL,
+
+    CONSTRAINT FK_Transactions_Users  FOREIGN KEY (IDNguoiDung) REFERENCES Users(ID),
+    CONSTRAINT FK_Transactions_LoaiXe FOREIGN KEY (MaLoaiXe)    REFERENCES LoaiXe(MaLoaiXe)
+);
+GO
+
+-- ============================================================
+--  BẢNG: DatTruoc
+-- ============================================================
+CREATE TABLE DatTruoc (
+    MaDatTruoc      VARCHAR(50)     NOT NULL PRIMARY KEY,
+    IDKhachHang     VARCHAR(50)     NOT NULL,
+    KhuVuc          NVARCHAR(50)    NOT NULL,
+    MaLoaiXe        VARCHAR(20)     NOT NULL,
+    ThoiGianDen     DATETIME        NOT NULL,
+    ThoiGianHetHan  DATETIME        NOT NULL,   -- = ThoiGianDen + 30 phut
+    TrangThai       NVARCHAR(20)    NOT NULL DEFAULT N'Chờ xử lý',
+                    -- 'Chờ xử lý' | 'Đã xác nhận' | 'Đã hủy' | 'Hoàn thành'
+    IDDoXe          VARCHAR(20)     NULL,        -- slot được xếp sau khi xác nhận
+    GhiChu          NVARCHAR(200)   NULL,
+    NgayTao         DATETIME        NOT NULL DEFAULT GETDATE(),
+
+    CONSTRAINT FK_DatTruoc_Users  FOREIGN KEY (IDKhachHang) REFERENCES Users(ID),
+    CONSTRAINT FK_DatTruoc_LoaiXe FOREIGN KEY (MaLoaiXe)    REFERENCES LoaiXe(MaLoaiXe)
+);
+GO
+
+-- ============================================================
+--  DỮ LIỆU: Users
+-- ============================================================
+INSERT INTO Users (ID, HoTen, SDT, BienSo, VaiTro, MatKhau, NgayTao) VALUES
+('admin', N'Nguyễn Văn Admin', '0901000001', '51A-00001', 'admin',      'admin123', '2025-01-01'),
+('nv01',  N'Trần Thị Lan',     '0901000002', '51B-11111', 'nhanvien',   'nv456',    '2025-02-01'),
+('nv02',  N'Lê Văn Minh',      '0901000003', '51C-22222', 'nhanvien',   'nv789',    '2025-03-01'),
+('kh01',  N'Phạm Thị Thu',     '0901000004', '51D-33333', 'khachhang',  'kh123',    '2025-04-01'),
+('kh02',  N'Hoàng Văn Bình',   '0901000005', '51E-44444', 'khachhang',  'kh456',    '2025-04-15');
+GO
+
+-- ============================================================
+--  DỮ LIỆU: LoaiXe
 -- ============================================================
 INSERT INTO LoaiXe (MaLoaiXe, TenLoaiXe, PhiMoiGio) VALUES
-('LX001', N'Xe máy',        5000),
-('LX002', N'Xe ô tô 4 chỗ', 15000),
-('LX003', N'Xe ô tô 7 chỗ', 20000),
-('LX004', N'Xe tải nhỏ',    30000),
-('LX005', N'Xe đạp',        2000);
+('LX001', N'Xe máy',     5000),
+('LX002', N'Ô tô',       20000),
+('LX003', N'Xe đạp',     2000),
+('LX004', N'Xe tải nhỏ', 30000);
 GO
 
 -- ============================================================
--- BƯỚC 4: TÀI KHOẢN NGƯỜI DÙNG
+--  DỮ LIỆU: ParkingSlot (20 slot, 5 slot đang có xe)
 -- ============================================================
--- VaiTro: 'admin' | 'nhanvien' | 'khachhang'
--- Màn hình đăng nhập dùng cột ID + MatKhau
-INSERT INTO Users (ID, HoTen, SDT, BienSo, VaiTro, MatKhau, NgayTao) VALUES
--- ===== ADMIN =====
-('admin',   N'Trần Nhật Phước',        '0935955854', '',            'admin',      'admin123', GETDATE()),
+INSERT INTO ParkingSlot (IDDoXe, KhuVuc, TrangThai) VALUES
+('A01', N'Khu A', N'Trống'), ('A02', N'Khu A', N'Trống'),
+('A03', N'Khu A', N'Trống'), ('A04', N'Khu A', N'Trống'),
+('A05', N'Khu A', N'Trống'), ('A06', N'Khu A', N'Trống'),
+('A07', N'Khu A', N'Trống'), ('A08', N'Khu A', N'Trống'),
+('A09', N'Khu A', N'Trống'), ('A10', N'Khu A', N'Trống'),
+('B01', N'Khu B', N'Trống'), ('B02', N'Khu B', N'Trống'),
+('B03', N'Khu B', N'Trống'), ('B04', N'Khu B', N'Trống'),
+('B05', N'Khu B', N'Trống'), ('B06', N'Khu B', N'Trống'),
+('C01', N'Khu C', N'Trống'), ('C02', N'Khu C', N'Trống'),
+('C03', N'Khu C', N'Trống'), ('C04', N'Khu C', N'Trống');
+GO
 
--- ===== NHÂN VIÊN =====
-('nv01',    N'Trần Ngọc Tấn Lộc',      '0988888888', '',            'nhanvien',   'nv456',    GETDATE()),
-('nv02',    N'Nguyễn Phước Minh Quân', '0977777777', '',            'nhanvien',   'nv789',    GETDATE()),
-('nv03',    N'Lê Thị Hương',           '0966666666', '',            'nhanvien',   'nv111',    GETDATE()),
+UPDATE ParkingSlot SET TrangThai=N'Đang gửi', IDNguoiDung='nv01',
+    TenKhachHang=N'Phạm Văn An',      SoDienThoai='0912345678',
+    BienSoXe='51A-123.45', MaLoaiXe='LX001',
+    ThoiGianVao=DATEADD(HOUR,-2,GETDATE()) WHERE IDDoXe='A01';
 
--- ===== KHÁCH HÀNG =====
-('kh01',    N'Hồ Đại Phong',           '0911223344', '79VA-08761',  'khachhang',  'kh123',    GETDATE()),
-('kh02',    N'Trần Thị Anh',           '0909090909', '52-P85748',   'khachhang',  'kh456',    GETDATE()),
-('kh03',    N'Lê Văn Bảo',             '0933333333', '51D-57964',   'khachhang',  'kh789',    GETDATE()),
-('kh04',    N'Phạm Văn Cường',         '0944444444', '68A-12626',   'khachhang',  'kh321',    GETDATE()),
-('kh05',    N'Hoàng Thị Doanh',        '0955555555', '50H-81487',   'khachhang',  'kh654',    GETDATE()),
-('kh06',    N'Nguyễn Văn Em',          '0922111333', '43A-56789',   'khachhang',  'kh987',    GETDATE()),
-('kh07',    N'Vũ Thị Phương',          '0900123456', '29B-11234',   'khachhang',  'kh111',    GETDATE()),
-('kh08',    N'Đặng Minh Tuấn',         '0912345678', '61C-22345',   'khachhang',  'kh222',    GETDATE());
+UPDATE ParkingSlot SET TrangThai=N'Đang gửi', IDNguoiDung='nv01',
+    TenKhachHang=N'Nguyễn Thị Bích',  SoDienThoai='0923456789',
+    BienSoXe='51B-678.90', MaLoaiXe='LX001',
+    ThoiGianVao=DATEADD(MINUTE,-45,GETDATE()) WHERE IDDoXe='A03';
+
+UPDATE ParkingSlot SET TrangThai=N'Đang gửi', IDNguoiDung='admin',
+    TenKhachHang=N'Lê Quốc Cường',    SoDienThoai='0934567890',
+    BienSoXe='51C-999.11', MaLoaiXe='LX002',
+    ThoiGianVao=DATEADD(HOUR,-3,GETDATE()) WHERE IDDoXe='B01';
+
+UPDATE ParkingSlot SET TrangThai=N'Đang gửi', IDNguoiDung='nv02',
+    TenKhachHang=N'Trần Minh Đức',    SoDienThoai='0945678901',
+    BienSoXe='51D-555.22', MaLoaiXe='LX002',
+    ThoiGianVao=DATEADD(MINUTE,-90,GETDATE()) WHERE IDDoXe='B03';
+
+UPDATE ParkingSlot SET TrangThai=N'Đang gửi', IDNguoiDung='nv02',
+    TenKhachHang=N'Võ Thị Hoa',       SoDienThoai='0956789012',
+    BienSoXe='51E-333.44', MaLoaiXe='LX003',
+    ThoiGianVao=DATEADD(MINUTE,-20,GETDATE()) WHERE IDDoXe='C01';
 GO
 
 -- ============================================================
--- BƯỚC 5: VỊ TRÍ BÃI ĐỖ XE (32 ô - 4 khu A/B/C/D)
+--  DỮ LIỆU: Transactions
 -- ============================================================
--- TrangThai: N'Đang gửi' | N'Trống'
--- Một số ô đang có xe để demo màn hình sơ đồ bãi
-INSERT INTO ParkingSlot
-    (IDDoXe, KhuVuc, IDNguoiDung, TenKhachHang, SoDienThoai, BienSoXe, ThoiGianVao, MaLoaiXe, HinhAnhVao, TrangThai)
-VALUES
--- KHU A: Xe máy (8 ô) — 4 đang gửi, 4 trống
-('A1', N'Khu A', 'kh01', N'Hồ Đại Phong',   '0911223344', '79VA-08761', DATEADD(HOUR,-2,GETDATE()),  'LX001', NULL, N'Đang gửi'),
-('A2', N'Khu A', 'kh02', N'Trần Thị Anh',   '0909090909', '52-P85748',  DATEADD(HOUR,-5,GETDATE()),  'LX001', NULL, N'Đang gửi'),
-('A3', N'Khu A', 'kh03', N'Lê Văn Bảo',     '0933333333', '51D-57964',  DATEADD(HOUR,-1,GETDATE()),  'LX001', NULL, N'Đang gửi'),
-('A4', N'Khu A', 'kh06', N'Nguyễn Văn Em',  '0922111333', '43A-56789',  DATEADD(MINUTE,-40,GETDATE()),'LX001', NULL, N'Đang gửi'),
-('A5', N'Khu A', NULL, NULL, NULL, NULL, NULL, 'LX001', NULL, N'Trống'),
-('A6', N'Khu A', NULL, NULL, NULL, NULL, NULL, 'LX001', NULL, N'Trống'),
-('A7', N'Khu A', NULL, NULL, NULL, NULL, NULL, 'LX001', NULL, N'Trống'),
-('A8', N'Khu A', NULL, NULL, NULL, NULL, NULL, 'LX001', NULL, N'Trống'),
 
--- KHU B: Ô tô 4 chỗ (8 ô) — 3 đang gửi, 5 trống
-('B1', N'Khu B', 'kh04', N'Phạm Văn Cường', '0944444444', '68A-12626',  DATEADD(HOUR,-8,GETDATE()),  'LX002', NULL, N'Đang gửi'),
-('B2', N'Khu B', 'kh05', N'Hoàng Thị Doanh','0955555555', '50H-81487',  DATEADD(HOUR,-3,GETDATE()),  'LX002', NULL, N'Đang gửi'),
-('B3', N'Khu B', 'kh07', N'Vũ Thị Phương',  '0900123456', '29B-11234',  DATEADD(HOUR,-1,GETDATE()),  'LX002', NULL, N'Đang gửi'),
-('B4', N'Khu B', NULL, NULL, NULL, NULL, NULL, 'LX002', NULL, N'Trống'),
-('B5', N'Khu B', NULL, NULL, NULL, NULL, NULL, 'LX002', NULL, N'Trống'),
-('B6', N'Khu B', NULL, NULL, NULL, NULL, NULL, 'LX002', NULL, N'Trống'),
-('B7', N'Khu B', NULL, NULL, NULL, NULL, NULL, 'LX002', NULL, N'Trống'),
-('B8', N'Khu B', NULL, NULL, NULL, NULL, NULL, 'LX002', NULL, N'Trống'),
+-- Hôm nay: hoàn thành
+INSERT INTO Transactions (MaGiaoDich,IDNguoiDung,IDDoXe,TenKhachHang,SoDienThoai,BienSoXe,MaLoaiXe,ThoiGianVao,ThoiGianRa,ThanhTien) VALUES
+('GD-TODAY-001','nv01','A02',N'Hoàng Văn Em',   '0911111111','51A-001.11','LX001',DATEADD(HOUR,-5,CAST(CAST(GETDATE()AS DATE)AS DATETIME)),DATEADD(HOUR,-2,CAST(CAST(GETDATE()AS DATE)AS DATETIME)),15000),
+('GD-TODAY-002','nv01','A04',N'Đinh Thị Phương','0922222222','51A-002.22','LX001',DATEADD(HOUR,-4,CAST(CAST(GETDATE()AS DATE)AS DATETIME)),DATEADD(HOUR,-1,CAST(CAST(GETDATE()AS DATE)AS DATETIME)),10000),
+('GD-TODAY-003','admin','B02',N'Phan Văn Giang', '0933333333','51B-003.33','LX002',DATEADD(HOUR,-6,CAST(CAST(GETDATE()AS DATE)AS DATETIME)),DATEADD(HOUR,-3,CAST(CAST(GETDATE()AS DATE)AS DATETIME)),60000),
+('GD-TODAY-004','nv02','C02',N'Bùi Thị Hạnh',   '0944444444','51C-004.44','LX003',DATEADD(HOUR,-3,CAST(CAST(GETDATE()AS DATE)AS DATETIME)),DATEADD(HOUR,-1,CAST(CAST(GETDATE()AS DATE)AS DATETIME)),4000),
+('GD-TODAY-005','nv01','A06',N'Lý Văn Khánh',   '0955555555','51A-005.55','LX001',DATEADD(HOUR,-2,CAST(CAST(GETDATE()AS DATE)AS DATETIME)),DATEADD(MINUTE,-30,GETDATE()),10000);
 
--- KHU C: Ô tô 7 chỗ + xe tải (8 ô) — 2 đang gửi, 6 trống
-('C1', N'Khu C', 'kh08', N'Đặng Minh Tuấn', '0912345678', '61C-22345',  DATEADD(HOUR,-4,GETDATE()),  'LX003', NULL, N'Đang gửi'),
-('C2', N'Khu C', 'kh03', N'Lê Văn Bảo',     '0933333333', '51D-57964',  DATEADD(HOUR,-6,GETDATE()),  'LX004', NULL, N'Đang gửi'),
-('C3', N'Khu C', NULL, NULL, NULL, NULL, NULL, 'LX003', NULL, N'Trống'),
-('C4', N'Khu C', NULL, NULL, NULL, NULL, NULL, 'LX003', NULL, N'Trống'),
-('C5', N'Khu C', NULL, NULL, NULL, NULL, NULL, 'LX003', NULL, N'Trống'),
-('C6', N'Khu C', NULL, NULL, NULL, NULL, NULL, 'LX004', NULL, N'Trống'),
-('C7', N'Khu C', NULL, NULL, NULL, NULL, NULL, 'LX004', NULL, N'Trống'),
-('C8', N'Khu C', NULL, NULL, NULL, NULL, NULL, 'LX004', NULL, N'Trống'),
+-- Đang gửi (khớp ParkingSlot)
+INSERT INTO Transactions (MaGiaoDich,IDNguoiDung,IDDoXe,TenKhachHang,SoDienThoai,BienSoXe,MaLoaiXe,ThoiGianVao,ThoiGianRa,ThanhTien) VALUES
+('GD-ACTIVE-001','nv01', 'A01',N'Phạm Văn An',    '0912345678','51A-123.45','LX001',DATEADD(HOUR,-2,GETDATE()),   NULL,0),
+('GD-ACTIVE-002','nv01', 'A03',N'Nguyễn Thị Bích','0923456789','51B-678.90','LX001',DATEADD(MINUTE,-45,GETDATE()),NULL,0),
+('GD-ACTIVE-003','admin','B01',N'Lê Quốc Cường',  '0934567890','51C-999.11','LX002',DATEADD(HOUR,-3,GETDATE()),   NULL,0),
+('GD-ACTIVE-004','nv02', 'B03',N'Trần Minh Đức',  '0945678901','51D-555.22','LX002',DATEADD(MINUTE,-90,GETDATE()),NULL,0),
+('GD-ACTIVE-005','nv02', 'C01',N'Võ Thị Hoa',     '0956789012','51E-333.44','LX003',DATEADD(MINUTE,-20,GETDATE()),NULL,0);
 
--- KHU D: Xe đạp (8 ô) — 1 đang gửi, 7 trống
-('D1', N'Khu D', 'kh02', N'Trần Thị Anh',   '0909090909', '52-P85748',  DATEADD(MINUTE,-20,GETDATE()),'LX005', NULL, N'Đang gửi'),
-('D2', N'Khu D', NULL, NULL, NULL, NULL, NULL, 'LX005', NULL, N'Trống'),
-('D3', N'Khu D', NULL, NULL, NULL, NULL, NULL, 'LX005', NULL, N'Trống'),
-('D4', N'Khu D', NULL, NULL, NULL, NULL, NULL, 'LX005', NULL, N'Trống'),
-('D5', N'Khu D', NULL, NULL, NULL, NULL, NULL, 'LX005', NULL, N'Trống'),
-('D6', N'Khu D', NULL, NULL, NULL, NULL, NULL, 'LX005', NULL, N'Trống'),
-('D7', N'Khu D', NULL, NULL, NULL, NULL, NULL, 'LX005', NULL, N'Trống'),
-('D8', N'Khu D', NULL, NULL, NULL, NULL, NULL, 'LX005', NULL, N'Trống');
+-- Lịch sử 7 ngày
+INSERT INTO Transactions (MaGiaoDich,IDNguoiDung,IDDoXe,TenKhachHang,SoDienThoai,BienSoXe,MaLoaiXe,ThoiGianVao,ThoiGianRa,ThanhTien) VALUES
+('GD-D1-001','nv01', 'A01',N'KH Ngẫu Nhiên 1', '0900000001','51A-101.01','LX001',DATEADD(DAY,-1,GETDATE()),DATEADD(HOUR, 2,DATEADD(DAY,-1,GETDATE())), 10000),
+('GD-D1-002','nv02', 'B01',N'KH Ngẫu Nhiên 2', '0900000002','51B-202.02','LX002',DATEADD(DAY,-1,GETDATE()),DATEADD(HOUR, 3,DATEADD(DAY,-1,GETDATE())), 60000),
+('GD-D1-003','nv01', 'A02',N'KH Ngẫu Nhiên 3', '0900000003','51A-303.03','LX001',DATEADD(DAY,-1,GETDATE()),DATEADD(HOUR, 1,DATEADD(DAY,-1,GETDATE())),  5000),
+('GD-D2-001','admin','B02',N'KH Ngẫu Nhiên 4', '0900000004','51C-404.04','LX002',DATEADD(DAY,-2,GETDATE()),DATEADD(HOUR, 4,DATEADD(DAY,-2,GETDATE())), 80000),
+('GD-D2-002','nv01', 'A03',N'KH Ngẫu Nhiên 5', '0900000005','51A-505.05','LX001',DATEADD(DAY,-2,GETDATE()),DATEADD(HOUR, 2,DATEADD(DAY,-2,GETDATE())), 10000),
+('GD-D2-003','nv02', 'C01',N'KH Ngẫu Nhiên 6', '0900000006','51C-606.06','LX003',DATEADD(DAY,-2,GETDATE()),DATEADD(HOUR, 1,DATEADD(DAY,-2,GETDATE())),  2000),
+('GD-D3-001','nv01', 'A04',N'KH Ngẫu Nhiên 7', '0900000007','51A-707.07','LX001',DATEADD(DAY,-3,GETDATE()),DATEADD(HOUR, 3,DATEADD(DAY,-3,GETDATE())), 15000),
+('GD-D3-002','admin','B03',N'KH Ngẫu Nhiên 8', '0900000008','51D-808.08','LX004',DATEADD(DAY,-3,GETDATE()),DATEADD(HOUR, 5,DATEADD(DAY,-3,GETDATE())),150000),
+('GD-D4-001','nv02', 'A05',N'KH Ngẫu Nhiên 9', '0900000009','51A-909.09','LX001',DATEADD(DAY,-4,GETDATE()),DATEADD(HOUR, 2,DATEADD(DAY,-4,GETDATE())), 10000),
+('GD-D4-002','nv01', 'B04',N'KH Ngẫu Nhiên 10','0900000010','51B-010.10','LX002',DATEADD(DAY,-4,GETDATE()),DATEADD(HOUR, 3,DATEADD(DAY,-4,GETDATE())), 60000),
+('GD-D5-001','admin','A06',N'KH Ngẫu Nhiên 11','0900000011','51A-011.11','LX001',DATEADD(DAY,-5,GETDATE()),DATEADD(HOUR, 1,DATEADD(DAY,-5,GETDATE())),  5000),
+('GD-D5-002','nv02', 'B05',N'KH Ngẫu Nhiên 12','0900000012','51B-012.12','LX002',DATEADD(DAY,-5,GETDATE()),DATEADD(HOUR, 4,DATEADD(DAY,-5,GETDATE())), 80000),
+('GD-D6-001','nv01', 'A07',N'KH Ngẫu Nhiên 13','0900000013','51A-013.13','LX001',DATEADD(DAY,-6,GETDATE()),DATEADD(HOUR, 2,DATEADD(DAY,-6,GETDATE())), 10000),
+('GD-D6-002','admin','B06',N'KH Ngẫu Nhiên 14','0900000014','51B-014.14','LX002',DATEADD(DAY,-6,GETDATE()),DATEADD(HOUR, 3,DATEADD(DAY,-6,GETDATE())), 60000),
+('GD-D7-001','nv01', 'A08',N'KH Ngẫu Nhiên 15','0900000015','51A-015.15','LX001',DATEADD(DAY,-7,GETDATE()),DATEADD(HOUR, 5,DATEADD(DAY,-7,GETDATE())), 25000),
+('GD-D7-002','nv02', 'C02',N'KH Ngẫu Nhiên 16','0900000016','51C-016.16','LX003',DATEADD(DAY,-7,GETDATE()),DATEADD(HOUR, 1,DATEADD(DAY,-7,GETDATE())),  2000);
 GO
 
 -- ============================================================
--- BƯỚC 6: GIAO DỊCH LỊCH SỬ (7 ngày qua)
--- Phục vụ: màn hình Biểu Đồ, Thống Kê, Báo Cáo
--- Logic tính tiền của app:
---   <= 60 phút => 1 giờ
---   > 60 phút  => CEILING(phút/60) giờ
+--  DỮ LIỆU: DatTruoc (demo lịch sử đặt cho kh01, kh02)
 -- ============================================================
-
-INSERT INTO Transactions
-    (MaGiaoDich, IDNguoiDung, IDDoXe, TenKhachHang, SoDienThoai, BienSoXe, MaLoaiXe, ThoiGianVao, ThoiGianRa, ThanhTien, HinhAnhVao, HinhAnhRa)
-VALUES
-
--- ============================================================
--- 6 NGÀY TRƯỚC (lịch sử xa)
--- ============================================================
-('GD_H6_01', 'kh01', 'A1', N'Hồ Đại Phong',    '0911223344', '79VA-08761', 'LX001',
-    DATEADD(HOUR,-6*24+ 7,GETDATE()), DATEADD(HOUR,-6*24+10,GETDATE()), 15000, NULL, NULL),
-('GD_H6_02', 'kh04', 'B1', N'Phạm Văn Cường',   '0944444444', '68A-12626',  'LX002',
-    DATEADD(HOUR,-6*24+ 8,GETDATE()), DATEADD(HOUR,-6*24+12,GETDATE()), 60000, NULL, NULL),
-('GD_H6_03', 'kh07', 'C1', N'Vũ Thị Phương',    '0900123456', '29B-11234',  'LX003',
-    DATEADD(HOUR,-6*24+ 9,GETDATE()), DATEADD(HOUR,-6*24+11,GETDATE()), 40000, NULL, NULL),
-
--- ============================================================
--- 5 NGÀY TRƯỚC
--- ============================================================
-('GD_H5_01', 'kh02', 'A2', N'Trần Thị Anh',     '0909090909', '52-P85748',  'LX001',
-    DATEADD(HOUR,-5*24+ 6,GETDATE()), DATEADD(HOUR,-5*24+ 8,GETDATE()),  10000, NULL, NULL),
-('GD_H5_02', 'kh05', 'B2', N'Hoàng Thị Doanh',  '0955555555', '50H-81487',  'LX002',
-    DATEADD(HOUR,-5*24+10,GETDATE()), DATEADD(HOUR,-5*24+14,GETDATE()),  60000, NULL, NULL),
-('GD_H5_03', 'kh08', 'C2', N'Đặng Minh Tuấn',   '0912345678', '61C-22345',  'LX004',
-    DATEADD(HOUR,-5*24+ 7,GETDATE()), DATEADD(HOUR,-5*24+15,GETDATE()), 240000, NULL, NULL),
-('GD_H5_04', 'kh06', 'D1', N'Nguyễn Văn Em',    '0922111333', '43A-56789',  'LX005',
-    DATEADD(HOUR,-5*24+ 8,GETDATE()), DATEADD(HOUR,-5*24+ 9,GETDATE()),   2000, NULL, NULL),
-
--- ============================================================
--- 4 NGÀY TRƯỚC
--- ============================================================
-('GD_H4_01', 'kh03', 'A3', N'Lê Văn Bảo',       '0933333333', '51D-57964',  'LX001',
-    DATEADD(HOUR,-4*24+ 7,GETDATE()), DATEADD(HOUR,-4*24+ 9,GETDATE()),  10000, NULL, NULL),
-('GD_H4_02', 'kh01', 'B3', N'Hồ Đại Phong',     '0911223344', '79VA-08761', 'LX002',
-    DATEADD(HOUR,-4*24+ 9,GETDATE()), DATEADD(HOUR,-4*24+13,GETDATE()),  60000, NULL, NULL),
-('GD_H4_03', 'kh07', 'B4', N'Vũ Thị Phương',    '0900123456', '29B-11234',  'LX002',
-    DATEADD(HOUR,-4*24+11,GETDATE()), DATEADD(HOUR,-4*24+16,GETDATE()),  75000, NULL, NULL),
-('GD_H4_04', 'kh04', 'C3', N'Phạm Văn Cường',   '0944444444', '68A-12626',  'LX003',
-    DATEADD(HOUR,-4*24+ 8,GETDATE()), DATEADD(HOUR,-4*24+18,GETDATE()), 200000, NULL, NULL),
-
--- ============================================================
--- 3 NGÀY TRƯỚC
--- ============================================================
-('GD_H3_01', 'kh02', 'A1', N'Trần Thị Anh',     '0909090909', '52-P85748',  'LX001',
-    DATEADD(HOUR,-3*24+ 6,GETDATE()), DATEADD(HOUR,-3*24+ 7,GETDATE()),   5000, NULL, NULL),
-('GD_H3_02', 'kh05', 'A2', N'Hoàng Thị Doanh',  '0955555555', '50H-81487',  'LX001',
-    DATEADD(HOUR,-3*24+ 8,GETDATE()), DATEADD(HOUR,-3*24+11,GETDATE()),  15000, NULL, NULL),
-('GD_H3_03', 'kh08', 'B1', N'Đặng Minh Tuấn',   '0912345678', '61C-22345',  'LX002',
-    DATEADD(HOUR,-3*24+ 9,GETDATE()), DATEADD(HOUR,-3*24+12,GETDATE()),  45000, NULL, NULL),
-('GD_H3_04', 'kh06', 'B2', N'Nguyễn Văn Em',    '0922111333', '43A-56789',  'LX002',
-    DATEADD(HOUR,-3*24+13,GETDATE()), DATEADD(HOUR,-3*24+17,GETDATE()),  60000, NULL, NULL),
-('GD_H3_05', 'kh03', 'C1', N'Lê Văn Bảo',       '0933333333', '51D-57964',  'LX004',
-    DATEADD(HOUR,-3*24+ 7,GETDATE()), DATEADD(HOUR,-3*24+19,GETDATE()), 360000, NULL, NULL),
-('GD_H3_06', 'kh01', 'D1', N'Hồ Đại Phong',     '0911223344', '79VA-08761', 'LX005',
-    DATEADD(HOUR,-3*24+ 7,GETDATE()), DATEADD(HOUR,-3*24+ 8,GETDATE()),   2000, NULL, NULL),
-
--- ============================================================
--- 2 NGÀY TRƯỚC
--- ============================================================
-('GD_H2_01', 'kh04', 'A1', N'Phạm Văn Cường',   '0944444444', '68A-12626',  'LX001',
-    DATEADD(HOUR,-2*24+ 7,GETDATE()), DATEADD(HOUR,-2*24+ 9,GETDATE()),  10000, NULL, NULL),
-('GD_H2_02', 'kh07', 'A2', N'Vũ Thị Phương',    '0900123456', '29B-11234',  'LX001',
-    DATEADD(HOUR,-2*24+10,GETDATE()), DATEADD(HOUR,-2*24+12,GETDATE()),  10000, NULL, NULL),
-('GD_H2_03', 'kh05', 'B1', N'Hoàng Thị Doanh',  '0955555555', '50H-81487',  'LX002',
-    DATEADD(HOUR,-2*24+ 8,GETDATE()), DATEADD(HOUR,-2*24+16,GETDATE()), 120000, NULL, NULL),
-('GD_H2_04', 'kh02', 'B2', N'Trần Thị Anh',     '0909090909', '52-P85748',  'LX002',
-    DATEADD(HOUR,-2*24+11,GETDATE()), DATEADD(HOUR,-2*24+14,GETDATE()),  45000, NULL, NULL),
-('GD_H2_05', 'kh08', 'C1', N'Đặng Minh Tuấn',   '0912345678', '61C-22345',  'LX003',
-    DATEADD(HOUR,-2*24+ 9,GETDATE()), DATEADD(HOUR,-2*24+13,GETDATE()),  80000, NULL, NULL),
-('GD_H2_06', 'kh06', 'C2', N'Nguyễn Văn Em',    '0922111333', '43A-56789',  'LX004',
-    DATEADD(HOUR,-2*24+ 7,GETDATE()), DATEADD(HOUR,-2*24+20,GETDATE()), 390000, NULL, NULL),
-('GD_H2_07', 'kh03', 'D1', N'Lê Văn Bảo',       '0933333333', '51D-57964',  'LX005',
-    DATEADD(HOUR,-2*24+ 6,GETDATE()), DATEADD(HOUR,-2*24+ 8,GETDATE()),   4000, NULL, NULL),
-
--- ============================================================
--- HÔM QUA
--- ============================================================
-('GD_H1_01', 'kh01', 'A1', N'Hồ Đại Phong',     '0911223344', '79VA-08761', 'LX001',
-    DATEADD(HOUR,-1*24+ 6,GETDATE()), DATEADD(HOUR,-1*24+ 7,GETDATE()),   5000, NULL, NULL),
-('GD_H1_02', 'kh02', 'A2', N'Trần Thị Anh',     '0909090909', '52-P85748',  'LX001',
-    DATEADD(HOUR,-1*24+ 8,GETDATE()), DATEADD(HOUR,-1*24+11,GETDATE()),  15000, NULL, NULL),
-('GD_H1_03', 'kh03', 'A3', N'Lê Văn Bảo',       '0933333333', '51D-57964',  'LX001',
-    DATEADD(HOUR,-1*24+12,GETDATE()), DATEADD(HOUR,-1*24+14,GETDATE()),  10000, NULL, NULL),
-('GD_H1_04', 'kh04', 'B1', N'Phạm Văn Cường',   '0944444444', '68A-12626',  'LX002',
-    DATEADD(HOUR,-1*24+ 7,GETDATE()), DATEADD(HOUR,-1*24+13,GETDATE()),  90000, NULL, NULL),
-('GD_H1_05', 'kh05', 'B2', N'Hoàng Thị Doanh',  '0955555555', '50H-81487',  'LX002',
-    DATEADD(HOUR,-1*24+14,GETDATE()), DATEADD(HOUR,-1*24+18,GETDATE()),  60000, NULL, NULL),
-('GD_H1_06', 'kh06', 'B3', N'Nguyễn Văn Em',    '0922111333', '43A-56789',  'LX002',
-    DATEADD(HOUR,-1*24+ 9,GETDATE()), DATEADD(HOUR,-1*24+12,GETDATE()),  45000, NULL, NULL),
-('GD_H1_07', 'kh07', 'C1', N'Vũ Thị Phương',    '0900123456', '29B-11234',  'LX003',
-    DATEADD(HOUR,-1*24+ 8,GETDATE()), DATEADD(HOUR,-1*24+16,GETDATE()), 160000, NULL, NULL),
-('GD_H1_08', 'kh08', 'C2', N'Đặng Minh Tuấn',   '0912345678', '61C-22345',  'LX004',
-    DATEADD(HOUR,-1*24+ 7,GETDATE()), DATEADD(HOUR,-1*24+19,GETDATE()), 360000, NULL, NULL),
-('GD_H1_09', 'kh01', 'D1', N'Hồ Đại Phong',     '0911223344', '79VA-08761', 'LX005',
-    DATEADD(HOUR,-1*24+ 7,GETDATE()), DATEADD(HOUR,-1*24+ 9,GETDATE()),   4000, NULL, NULL),
-('GD_H1_10', 'kh03', 'D2', N'Lê Văn Bảo',       '0933333333', '51D-57964',  'LX005',
-    DATEADD(HOUR,-1*24+10,GETDATE()), DATEADD(HOUR,-1*24+11,GETDATE()),   2000, NULL, NULL),
-
--- ============================================================
--- HÔM NAY — giao dịch đã hoàn tất (ThoiGianRa != NULL)
--- Phục vụ màn hình Biểu Đồ & Thống Kê hôm nay
--- ============================================================
-('GD_T_01', 'kh01', 'A5', N'Hồ Đại Phong',      '0911223344', '79VA-08761', 'LX001',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 06:30',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 07:30',  5000, NULL, NULL),
-
-('GD_T_02', 'kh02', 'A6', N'Trần Thị Anh',       '0909090909', '52-P85748',  'LX001',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 07:00',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 09:30', 15000, NULL, NULL),
-
-('GD_T_03', 'kh03', 'A7', N'Lê Văn Bảo',         '0933333333', '51D-57964',  'LX001',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 08:00',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 10:00', 10000, NULL, NULL),
-
-('GD_T_04', 'kh04', 'B4', N'Phạm Văn Cường',     '0944444444', '68A-12626',  'LX002',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 07:30',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 11:30', 60000, NULL, NULL),
-
-('GD_T_05', 'kh05', 'B5', N'Hoàng Thị Doanh',    '0955555555', '50H-81487',  'LX002',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 09:00',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 12:00', 45000, NULL, NULL),
-
-('GD_T_06', 'kh06', 'B6', N'Nguyễn Văn Em',      '0922111333', '43A-56789',  'LX002',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 10:00',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 13:00', 45000, NULL, NULL),
-
-('GD_T_07', 'kh07', 'C3', N'Vũ Thị Phương',      '0900123456', '29B-11234',  'LX003',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 07:00',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 12:00', 100000, NULL, NULL),
-
-('GD_T_08', 'kh08', 'C4', N'Đặng Minh Tuấn',     '0912345678', '61C-22345',  'LX004',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 06:00',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 14:00', 240000, NULL, NULL),
-
-('GD_T_09', 'kh02', 'D2', N'Trần Thị Anh',       '0909090909', '52-P85748',  'LX005',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 08:00',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 09:00',   2000, NULL, NULL),
-
-('GD_T_10', 'kh03', 'D3', N'Lê Văn Bảo',         '0933333333', '51D-57964',  'LX005',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 10:00',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 12:00',   4000, NULL, NULL),
-
-('GD_T_11', 'kh01', 'A8', N'Hồ Đại Phong',       '0911223344', '79VA-08761', 'LX001',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 13:00',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 15:30', 15000, NULL, NULL),
-
-('GD_T_12', 'kh04', 'B7', N'Phạm Văn Cường',     '0944444444', '68A-12626',  'LX002',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 14:00',
-    CAST(CAST(GETDATE() AS DATE) AS DATETIME) + ' 17:00', 45000, NULL, NULL),
-
--- ============================================================
--- HÔM NAY — xe đang gửi (ThoiGianRa = NULL)
--- Khớp với ParkingSlot đang gửi → demo CheckOut
--- ============================================================
-('GD_T_CX1', 'kh01', 'A1', N'Hồ Đại Phong',     '0911223344', '79VA-08761', 'LX001',
-    DATEADD(HOUR,-2,GETDATE()), NULL, 0, NULL, NULL),
-
-('GD_T_CX2', 'kh02', 'A2', N'Trần Thị Anh',      '0909090909', '52-P85748',  'LX001',
-    DATEADD(HOUR,-5,GETDATE()), NULL, 0, NULL, NULL),
-
-('GD_T_CX3', 'kh03', 'A3', N'Lê Văn Bảo',        '0933333333', '51D-57964',  'LX001',
-    DATEADD(HOUR,-1,GETDATE()), NULL, 0, NULL, NULL),
-
-('GD_T_CX4', 'kh06', 'A4', N'Nguyễn Văn Em',     '0922111333', '43A-56789',  'LX001',
-    DATEADD(MINUTE,-40,GETDATE()), NULL, 0, NULL, NULL),
-
-('GD_T_CX5', 'kh04', 'B1', N'Phạm Văn Cường',    '0944444444', '68A-12626',  'LX002',
-    DATEADD(HOUR,-8,GETDATE()), NULL, 0, NULL, NULL),
-
-('GD_T_CX6', 'kh05', 'B2', N'Hoàng Thị Doanh',   '0955555555', '50H-81487',  'LX002',
-    DATEADD(HOUR,-3,GETDATE()), NULL, 0, NULL, NULL),
-
-('GD_T_CX7', 'kh07', 'B3', N'Vũ Thị Phương',     '0900123456', '29B-11234',  'LX002',
-    DATEADD(HOUR,-1,GETDATE()), NULL, 0, NULL, NULL),
-
-('GD_T_CX8', 'kh08', 'C1', N'Đặng Minh Tuấn',    '0912345678', '61C-22345',  'LX003',
-    DATEADD(HOUR,-4,GETDATE()), NULL, 0, NULL, NULL),
-
-('GD_T_CX9', 'kh03', 'C2', N'Lê Văn Bảo',        '0933333333', '51D-57964',  'LX004',
-    DATEADD(HOUR,-6,GETDATE()), NULL, 0, NULL, NULL),
-
-('GD_T_CX10','kh02', 'D1', N'Trần Thị Anh',       '0909090909', '52-P85748',  'LX005',
-    DATEADD(MINUTE,-20,GETDATE()), NULL, 0, NULL, NULL);
+INSERT INTO DatTruoc (MaDatTruoc,IDKhachHang,KhuVuc,MaLoaiXe,ThoiGianDen,ThoiGianHetHan,TrangThai,IDDoXe,NgayTao) VALUES
+-- Đang chờ đến (sẽ đến sau 2 giờ)
+('DT-001','kh01',N'Khu A','LX001',
+    DATEADD(HOUR, 2,GETDATE()), DATEADD(MINUTE,150,GETDATE()),
+    N'Đã xác nhận','A05', DATEADD(HOUR,-1,GETDATE())),
+-- Đã hủy
+('DT-002','kh01',N'Khu B','LX002',
+    DATEADD(DAY,-1,GETDATE()), DATEADD(MINUTE,30,DATEADD(DAY,-1,GETDATE())),
+    N'Đã hủy', NULL, DATEADD(DAY,-2,GETDATE())),
+-- Hoàn thành
+('DT-003','kh02',N'Khu A','LX001',
+    DATEADD(DAY,-3,GETDATE()), DATEADD(MINUTE,30,DATEADD(DAY,-3,GETDATE())),
+    N'Hoàn thành','A02', DATEADD(DAY,-4,GETDATE())),
+-- Mới tạo, chưa xử lý
+('DT-004','kh02',N'Khu C','LX003',
+    DATEADD(HOUR, 5,GETDATE()), DATEADD(MINUTE,330,GETDATE()),
+    N'Chờ xử lý', NULL, GETDATE());
 GO
 
 -- ============================================================
--- BƯỚC 7: KIỂM TRA DỮ LIỆU
+--  KIỂM TRA NHANH
 -- ============================================================
+SELECT 'Users'        AS [Table], COUNT(*) AS [Rows] FROM Users        UNION ALL
+SELECT 'LoaiXe',       COUNT(*) FROM LoaiXe                            UNION ALL
+SELECT 'ParkingSlot',  COUNT(*) FROM ParkingSlot                       UNION ALL
+SELECT 'Transactions', COUNT(*) FROM Transactions                      UNION ALL
+SELECT 'DatTruoc',     COUNT(*) FROM DatTruoc;
 
--- Tổng hợp theo bảng
-SELECT 'LoaiXe'      AS Bang, COUNT(*) AS SoLuong FROM LoaiXe     UNION ALL
-SELECT 'Users'       AS Bang, COUNT(*) AS SoLuong FROM Users       UNION ALL
-SELECT 'ParkingSlot' AS Bang, COUNT(*) AS SoLuong FROM ParkingSlot UNION ALL
-SELECT 'Transactions'AS Bang, COUNT(*) AS SoLuong FROM Transactions;
+SELECT IDDoXe, TrangThai, TenKhachHang, BienSoXe FROM ParkingSlot ORDER BY IDDoXe;
 
--- Trạng thái bãi xe
-SELECT TrangThai, COUNT(*) AS SoO FROM ParkingSlot GROUP BY TrangThai;
-
--- Doanh thu hôm nay
-SELECT
-    COUNT(*)       AS SoGiaoDichHomNay,
-    SUM(ThanhTien) AS DoanhThuHomNay
-FROM Transactions
-WHERE CAST(ThoiGianRa AS DATE) = CAST(GETDATE() AS DATE);
-
--- Doanh thu 7 ngày (dùng cho biểu đồ)
-SELECT
-    CAST(ThoiGianRa AS DATE) AS Ngay,
-    COUNT(*)                 AS SoLuot,
-    SUM(ThanhTien)           AS DoanhThu
-FROM Transactions
-WHERE ThoiGianRa IS NOT NULL
-  AND ThoiGianRa >= DATEADD(DAY, -6, CAST(GETDATE() AS DATE))
-GROUP BY CAST(ThoiGianRa AS DATE)
-ORDER BY Ngay;
-
--- Xe đang gửi hiện tại
-SELECT IDDoXe, KhuVuc, TenKhachHang, BienSoXe, ThoiGianVao, MaLoaiXe
-FROM ParkingSlot
-WHERE TrangThai = N'Đang gửi'
-ORDER BY KhuVuc, IDDoXe;
+SELECT ID, VaiTro, MatKhau FROM Users;
 GO
 
--- ============================================================
--- THÔNG TIN ĐĂNG NHẬP DEMO
--- ============================================================
-/*
-┌────────────────────────────────────────────────────────┐
-│             TÀI KHOẢN ĐĂNG NHẬP DEMO                  │
-├──────────────┬──────────────┬──────────────────────────┤
-│ Tên đăng nhập│  Mật khẩu   │ Vai trò                  │
-├──────────────┼──────────────┼──────────────────────────┤
-│ admin        │ admin123     │ Quản trị viên (full)     │
-│ nv01         │ nv456        │ Nhân viên (không quản lý)│
-│ nv02         │ nv789        │ Nhân viên                │
-│ kh01         │ kh123        │ Khách hàng (tìm kiếm)   │
-│ kh02         │ kh456        │ Khách hàng               │
-└──────────────┴──────────────┴──────────────────────────┘
-
-TÌNH TRẠNG BÃI XE:
-  - Tổng ô: 32  |  Đang gửi: 10  |  Trống: 22
-
-DOANH THU HÔM NAY (ước tính): ~586,000đ / 12 lượt xe
-DOANH THU 7 NGÀY: xem kết quả SELECT bên trên
-
-CÁC TÍNH NĂNG CÓ THỂ DEMO:
-  [admin]
-  ✔ Đăng nhập, đăng xuất
-  ✔ Xem sơ đồ bãi xe (A1-D8, màu đỏ/xanh)
-  ✔ Check-in xe vào ô trống (A5-A8, B4-B8, C3-C8, D2-D8)
-  ✔ Check-out xe đang gửi (A1-A4, B1-B3, C1-C2, D1)
-  ✔ Tìm kiếm xe theo biển số
-  ✔ Quản lý nhân sự (thêm/sửa/xóa nhân viên)
-  ✔ Quản lý loại xe (thêm/sửa/xóa)
-  ✔ Biểu đồ & thống kê doanh thu
-  ✔ Dashboard tổng quan
-  ✔ Tài khoản cá nhân, đổi mật khẩu
-
-  [nv01 / nv02]
-  ✔ Sơ đồ bãi xe, check-in, check-out
-  ✔ Tìm kiếm xe, báo cáo
-  ✗ Không thấy menu Quản lý nhân sự, Loại xe
-
-  [kh01 / kh02]
-  ✔ Chỉ thấy màn hình Tìm kiếm xe
-  ✔ Tài khoản cá nhân
-*/
+PRINT '=== Hoàn tất! Tài khoản: admin/admin123 | nv01/nv456 | nv02/nv789 | kh01/kh123 | kh02/kh456 ===';
+GO
