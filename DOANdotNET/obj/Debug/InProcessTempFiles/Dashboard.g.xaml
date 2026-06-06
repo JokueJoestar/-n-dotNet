@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dvu:Dashboard xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:dvu="clr-namespace:DOANdotNET.Views.UserControls;assembly=DOANdotNET" xmlns:vm="clr-namespace:DOANdotNET.ViewModels.UCViewModels;assembly=DOANdotNET" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <dvu:Dashboard.DataContext>
+    <vm:DashboardViewModel />
+  </dvu:Dashboard.DataContext>
+  <dvu:Dashboard.Content>
+    <Grid Margin="24">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,24">
+        <TextBlock Text="📊 Dashboard" FontSize="24" FontWeight="Bold" Foreground="#2C3E50" VerticalAlignment="Center" />
+        <Button>🔄 Làm mới<Button.Command><Binding /></Button.Command></Button>
+      </StackPanel>
+    </Grid>
+  </dvu:Dashboard.Content>
+</dvu:Dashboard>

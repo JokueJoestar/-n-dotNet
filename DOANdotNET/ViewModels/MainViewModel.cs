@@ -1,186 +1,107 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DOANdotNET.Views.UserControls;
+﻿using System.Windows;
 using System.Windows.Input;
-using DOANdotNET.ViewModels;
-using DOANdotNET.ViewModels.Services;
-using System.Windows;
 using DOANdotNET.ViewModels.Helpers;
+using DOANdotNET.ViewModels.Services;
+using DOANdotNET.Views.UserControls;
 
 namespace DOANdotNET.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        // --- BIẾN ĐIỀU KHIỂN GIAO DIỆN CHÍNH ---
         private object _currentView;
         public object CurrentView
         {
             get => _currentView;
-            set
-            {
-                _currentView = value;
-                OnPropertyChanged();
-            }
-        }
-        private string _statusMessage;
-        public string StatusMessage
-        {
-            get => _statusMessage;
-            set => SetProperty(ref _statusMessage, value);
+            set { _currentView = value; OnPropertyChanged(); }
         }
 
-        // BIẾN HIỂN THỊ TIÊU ĐỀ TRANG TƯƠNG ỨNG
         private string _pageTitle;
         public string PageTitle
         {
             get => _pageTitle;
-            set
-            {
-                _pageTitle = value;
-                OnPropertyChanged();
-            }
+            set { _pageTitle = value; OnPropertyChanged(); }
         }
 
-        // --- KHAI BÁO CÁC COMMAND ĐIỀU HƯỚNG MENU ---
         public ICommand ShowParkingMapCommand { get; private set; }
         public ICommand ShowSearchCommand { get; private set; }
         public ICommand ShowStaffCommand { get; private set; }
-        public ICommand ShowReportCommand { get; private set; }
-       
         public ICommand ShowMyAccountCommand { get; private set; }
         public ICommand LogoutCommand { get; private set; }
         public ICommand ShowVehicleTypeCommand { get; set; }
-
         public ICommand ShowRevenueChartCommand { get; private set; }
         public ICommand ShowDashboardCommand { get; private set; }
-
-        public ICommand ThucHienLogicCommand { get; set; }
-
         public ICommand ShowDatTruocCommand { get; private set; }
-
         public ICommand ShowQuanLyDatTruocCommand { get; private set; }
 
-        // --- THÔNG TIN PHÂN QUYỀN VÀ HIỂN THỊ NGƯỜI DÙNG ---
-        public string TenDangNhap => SessionManager.CurrentUser != null ? SessionManager.CurrentUser.HoTen : "Chưa đăng nhập";
-        public string VaiTroHienThi => SessionManager.CurrentUser != null ? SessionManager.CurrentUser.VaiTroHienThi : "";
+        public string TenDangNhap => SessionManager.CurrentUser?.HoTen ?? "Chưa đăng nhập";
+        public string VaiTroHienThi => SessionManager.CurrentUser?.VaiTroHienThi ?? "";
 
         public bool CanSeeReport => SessionManager.IsAdmin || SessionManager.IsNhanVien;
         public bool CanSeeStaff => SessionManager.IsAdmin;
         public bool CanSeeVehicleType => SessionManager.IsAdmin;
         public bool CanSeeMyAccount => SessionManager.CurrentUser != null;
-
         public bool CanSeeDatTruoc => SessionManager.IsKhachHang;
-
         public bool CanSeeQuanLyDatTruoc => SessionManager.IsAdmin || SessionManager.IsNhanVien;
 
-
-        // HÀM KHỞI TẠO DUY NHẤT
         public MainViewModel()
         {
-
-
-            // BẮT ĐẦU SỬA TỪ ĐÂY
             if (SessionManager.IsKhachHang)
-            {
-                CurrentView = new DatTruoc();
-                PageTitle = "ĐẶT CHỖ TRƯỚC";
-            }
+            { CurrentView = new DatTruoc(); PageTitle = "ĐẶT CHỖ TRƯỚC"; }
             else
-            {
-                CurrentView = new ParkingMap(); 
-                PageTitle = "SƠ ĐỒ BÃI ĐỖ XE";
-            }
+            { CurrentView = new ParkingMap(); PageTitle = "SƠ ĐỒ BÃI ĐỖ XE"; }
 
-            // --- KHỞI TẠO CHI TIẾT TỪNG LỆNH ĐIỀU HƯỚNG ---
             ShowParkingMapCommand = new RelayCommand(
                 p => { CurrentView = new ParkingMap(); PageTitle = "SƠ ĐỒ BÃI ĐỖ XE"; },
-                p => CanSeeReport
-            );
+                p => CanSeeReport);
 
             ShowSearchCommand = new RelayCommand(
                 p => { CurrentView = new Search(); PageTitle = "TÌM KIẾM XE"; },
-                p => true
-            );
+                p => true);
 
             ShowStaffCommand = new RelayCommand(
                 p => { CurrentView = new StaffManager(); PageTitle = "QUẢN LÝ NHÂN SỰ"; },
-                p => CanSeeStaff
-            );
-
-            ShowReportCommand = new RelayCommand(
-                p => { CurrentView = new Report(); PageTitle = "BÁO CÁO THỐNG KÊ"; },
-                p => CanSeeReport
-            );
-
-       
+                p => CanSeeStaff);
 
             ShowVehicleTypeCommand = new RelayCommand(
                 p => { CurrentView = new VehicleTypeManager(); PageTitle = "QUẢN LÝ LOẠI XE"; },
-                
-                p => CanSeeVehicleType
-            );
+                p => CanSeeVehicleType);
 
+            // FIX: Xóa ShowReportCommand (đã xóa Report view)
+            // Dùng RevenueChart thay thế cho tất cả chức năng báo cáo
             ShowRevenueChartCommand = new RelayCommand(
-                p => { CurrentView = new RevenueChart(); PageTitle = "THỐNG KÊ DOANH THU"; },
-                p => CanSeeReport
-            );
+                p => { CurrentView = new RevenueChart(); PageTitle = "BIỂU ĐỒ DOANH THU"; },
+                p => CanSeeReport);
 
             ShowDashboardCommand = new RelayCommand(
                 p => { CurrentView = new Dashboard(); PageTitle = "DASHBOARD"; },
-                p => CanSeeReport
-            );
+                p => CanSeeReport);
 
             ShowMyAccountCommand = new RelayCommand(
                 p => { CurrentView = new MyAccount(); PageTitle = "TÀI KHOẢN CỦA TÔI"; },
-                p => CanSeeMyAccount
-            );
+                p => CanSeeMyAccount);
 
             ShowDatTruocCommand = new RelayCommand(
-            p => { CurrentView = new DatTruoc(); PageTitle = "ĐẶT CHỖ TRƯỚC"; },
-            p => CanSeeDatTruoc
-            );
+                p => { CurrentView = new DatTruoc(); PageTitle = "ĐẶT CHỖ TRƯỚC"; },
+                p => CanSeeDatTruoc);
 
             ShowQuanLyDatTruocCommand = new RelayCommand(
-            p => { CurrentView = new QuanLyDatTruoc(); PageTitle = "QUẢN LÝ ĐẶT TRƯỚC"; },
-            p => CanSeeQuanLyDatTruoc
-            );
+                p => { CurrentView = new QuanLyDatTruoc(); PageTitle = "QUẢN LÝ ĐẶT TRƯỚC"; },
+                p => CanSeeQuanLyDatTruoc);
 
-            // LOGIC NÚT ĐĂNG XUẤT
             LogoutCommand = new RelayCommand(
-                 p =>
-                 {
-                    
-                     var result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất khỏi hệ thống không?",
-                                                  "Xác nhận",
-                                                  MessageBoxButton.YesNo,
-                                                  MessageBoxImage.Question);
-
-                     
-                     if (result == MessageBoxResult.Yes)
-                     {
-                         SessionManager.Logout();
-                         Window currentWindow = p as Window;
-                         if (currentWindow != null)
-                         {
-                             DOANdotNET.Views.Login loginForm = new DOANdotNET.Views.Login();
-                             loginForm.Show();
-                             currentWindow.Close();
-                         }
-                     }
-                 },
-                 p => true
-             );
-
-            ThucHienLogicCommand = new RelayCommand(
                 p =>
                 {
-                    MessageBox.Show("Logic đã được gọi thành công từ ViewModel!", "Chuẩn MVVM");
+                    var result = MessageBox.Show(
+                        "Bạn có chắc chắn muốn đăng xuất khỏi hệ thống không?",
+                        "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (result != MessageBoxResult.Yes) return;
+
+                    SessionManager.Logout();
+                    var login = new DOANdotNET.Views.Login();
+                    login.Show();
+                    (p as Window)?.Close();
                 },
-                p => true
-            );
+                p => true);
         }
     }
 }

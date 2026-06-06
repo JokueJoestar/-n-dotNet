@@ -97,7 +97,6 @@ C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\bin\Debug\EntityFramew
 C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\bin\Debug\System.Data.SqlClient.xml
 C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\DOANdotNET.csproj.AssemblyReference.cache
 C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\CheckOut.baml
-C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\Report.baml
 C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\Search.baml
 C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\MainWindow.g.cs
 C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\AddSlot.g.cs
@@ -107,7 +106,6 @@ C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\Login.
 C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\MyAccount.g.cs
 C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\ParkingMap.g.cs
 C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\ParkingSlot.g.cs
-C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\Report.g.cs
 C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\Search.g.cs
 C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\StaffManager.g.cs
 C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\VehicleTypeManager.g.cs
@@ -144,3 +142,5 @@ C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserCo
 C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\DatTruoc.baml
 C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\QuanLyDatTruoc.g.cs
 C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\obj\Debug\Views\UserControls\QuanLyDatTruoc.baml
+C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\LENOVO\Desktop\tài liệu\DOANdotNET\DOANdotNET\bin\Debug\System.Configuration.ConfigurationManager.xml

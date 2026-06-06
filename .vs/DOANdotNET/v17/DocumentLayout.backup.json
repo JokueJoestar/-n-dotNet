@@ -3,16 +3,84 @@
   "WorkspaceRootPath": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|c:\\users\\lenovo\\desktop\\t\u00E0i li\u1EC7u\\doandotnet\\doandotnet\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:doandotnet\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|c:\\users\\lenovo\\desktop\\t\u00E0i li\u1EC7u\\doandotnet\\doandotnet\\viewmodels\\services\\sessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:doandotnet\\viewmodels\\services\\sessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|c:\\users\\lenovo\\desktop\\t\u00E0i li\u1EC7u\\doandotnet\\doandotnet\\views\\usercontrols\\dashboard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:doandotnet\\views\\usercontrols\\dashboard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\QL_BaiDoXe.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:QL_BaiDoXe.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\bin\\Debug\\QL_BaiDoXe.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DOANdotNET\\bin\\Debug\\QL_BaiDoXe.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\QL_BaiDoXe.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:QL_BaiDoXe.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+      "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\DOANdotNET.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:DOANdotNET\\DOANdotNET.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Views\\UserControls\\RevenueChart.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:DOANdotNET\\Views\\UserControls\\RevenueChart.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Views\\ReportWindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:DOANdotNET\\Views\\ReportWindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\LoginViewModels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:DOANdotNET\\ViewModels\\LoginViewModels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\CheckOutViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:DOANdotNET\\ViewModels\\CheckOutViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\CheckInViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:DOANdotNET\\ViewModels\\CheckInViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\AddSLotViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:DOANdotNET\\ViewModels\\AddSLotViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\StaffManagerViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:DOANdotNET\\ViewModels\\UCViewModels\\StaffManagerViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\VehicleTypeViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:DOANdotNET\\ViewModels\\UCViewModels\\VehicleTypeViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\SearchViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:DOANdotNET\\ViewModels\\UCViewModels\\SearchViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\ParkingMapViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:DOANdotNET\\ViewModels\\UCViewModels\\ParkingMapViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\MyAccountViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:DOANdotNET\\ViewModels\\UCViewModels\\MyAccountViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\Helpers\\RelayCommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:DOANdotNET\\ViewModels\\Helpers\\RelayCommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\Helpers\\PasswordHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:DOANdotNET\\ViewModels\\Helpers\\PasswordHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\Helpers\\PasswordConverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:DOANdotNET\\ViewModels\\Helpers\\PasswordConverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\Helpers\\BaseViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:DOANdotNET\\ViewModels\\Helpers\\BaseViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Models\\QL_BaiDoXe_Model.Context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -71,6 +139,10 @@
       "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:DOANdotNET\\Views\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\App.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:DOANdotNET\\App.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Models\\ParkingSlot_Custom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:DOANdotNET\\Models\\ParkingSlot_Custom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -93,6 +165,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\RevenueChartViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{307D6CC6-2C7C-415A-81FC-0605E3326136}|DOANdotNET\\DOANdotNET.csproj|solutionrelative:DOANdotNET\\ViewModels\\UCViewModels\\RevenueChartViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\QL_BaiDoXe.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:QL_BaiDoXe.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
     }
   ],
   "DocumentGroupContainers": [
@@ -102,51 +178,267 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 15,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SessionManager.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\Services\\SessionManager.cs",
+              "RelativeDocumentMoniker": "DOANdotNET\\ViewModels\\Services\\SessionManager.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\Services\\SessionManager.cs",
+              "RelativeToolTip": "DOANdotNET\\ViewModels\\Services\\SessionManager.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T16:06:16.175Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
+              "Title": "Dashboard.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Views\\UserControls\\Dashboard.xaml.cs",
+              "RelativeDocumentMoniker": "DOANdotNET\\Views\\UserControls\\Dashboard.xaml.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Views\\UserControls\\Dashboard.xaml.cs",
+              "RelativeToolTip": "DOANdotNET\\Views\\UserControls\\Dashboard.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T15:38:39.443Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DOANdotNET.csproj",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\DOANdotNET.csproj",
+              "RelativeDocumentMoniker": "DOANdotNET\\DOANdotNET.csproj",
+              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\DOANdotNET.csproj",
+              "RelativeToolTip": "DOANdotNET\\DOANdotNET.csproj",
+              "ViewState": "AgIAAPgAAAAAAAAAAAAjwBIBAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-06-06T15:35:01.586Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "RevenueChart.xaml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Views\\UserControls\\RevenueChart.xaml",
+              "RelativeDocumentMoniker": "DOANdotNET\\Views\\UserControls\\RevenueChart.xaml",
+              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Views\\UserControls\\RevenueChart.xaml",
+              "RelativeToolTip": "DOANdotNET\\Views\\UserControls\\RevenueChart.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-06T14:29:48.318Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ReportWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Views\\ReportWindow.xaml",
+              "RelativeDocumentMoniker": "DOANdotNET\\Views\\ReportWindow.xaml",
+              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Views\\ReportWindow.xaml",
+              "RelativeToolTip": "DOANdotNET\\Views\\ReportWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-06T14:18:29.512Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "LoginViewModels.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\LoginViewModels.cs",
+              "RelativeDocumentMoniker": "DOANdotNET\\ViewModels\\LoginViewModels.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\LoginViewModels.cs",
+              "RelativeToolTip": "DOANdotNET\\ViewModels\\LoginViewModels.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAowFIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T13:19:44.047Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CheckOutViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\CheckOutViewModel.cs",
+              "RelativeDocumentMoniker": "DOANdotNET\\ViewModels\\CheckOutViewModel.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\CheckOutViewModel.cs",
+              "RelativeToolTip": "DOANdotNET\\ViewModels\\CheckOutViewModel.cs",
+              "ViewState": "AgIAANMAAAAAAAAAAAAkwOYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T13:19:39.77Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CheckInViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\CheckInViewModel.cs",
+              "RelativeDocumentMoniker": "DOANdotNET\\ViewModels\\CheckInViewModel.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\CheckInViewModel.cs",
+              "RelativeToolTip": "DOANdotNET\\ViewModels\\CheckInViewModel.cs",
+              "ViewState": "AgIAAKgAAAAAAAAAAAAowLwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T13:19:35.663Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AddSLotViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\AddSLotViewModel.cs",
+              "RelativeDocumentMoniker": "DOANdotNET\\ViewModels\\AddSLotViewModel.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\AddSLotViewModel.cs",
+              "RelativeToolTip": "DOANdotNET\\ViewModels\\AddSLotViewModel.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAowD0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T13:19:32.078Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "StaffManagerViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\StaffManagerViewModel.cs",
+              "RelativeDocumentMoniker": "DOANdotNET\\ViewModels\\UCViewModels\\StaffManagerViewModel.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\StaffManagerViewModel.cs",
+              "RelativeToolTip": "DOANdotNET\\ViewModels\\UCViewModels\\StaffManagerViewModel.cs",
+              "ViewState": "AgIAAMsAAAAAAAAAAAAQwN8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T13:19:24.736Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "VehicleTypeViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\VehicleTypeViewModel.cs",
+              "RelativeDocumentMoniker": "DOANdotNET\\ViewModels\\UCViewModels\\VehicleTypeViewModel.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\VehicleTypeViewModel.cs",
+              "RelativeToolTip": "DOANdotNET\\ViewModels\\UCViewModels\\VehicleTypeViewModel.cs",
+              "ViewState": "AgIAAKoAAAAAAAAAAAAQwL4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T13:19:23.728Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "SearchViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\SearchViewModel.cs",
+              "RelativeDocumentMoniker": "DOANdotNET\\ViewModels\\UCViewModels\\SearchViewModel.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\SearchViewModel.cs",
+              "RelativeToolTip": "DOANdotNET\\ViewModels\\UCViewModels\\SearchViewModel.cs",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAYwIEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T13:19:20.156Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ParkingMapViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\ParkingMapViewModel.cs",
+              "RelativeDocumentMoniker": "DOANdotNET\\ViewModels\\UCViewModels\\ParkingMapViewModel.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\ParkingMapViewModel.cs",
+              "RelativeToolTip": "DOANdotNET\\ViewModels\\UCViewModels\\ParkingMapViewModel.cs",
+              "ViewState": "AgIAALQAAAAAAAAAAAAYwMkAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T13:19:02.422Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "MyAccountViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\MyAccountViewModel.cs",
+              "RelativeDocumentMoniker": "DOANdotNET\\ViewModels\\UCViewModels\\MyAccountViewModel.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\MyAccountViewModel.cs",
+              "RelativeToolTip": "DOANdotNET\\ViewModels\\UCViewModels\\MyAccountViewModel.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAYwFgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T13:18:56.363Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "RelayCommand.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\Helpers\\RelayCommand.cs",
+              "RelativeDocumentMoniker": "DOANdotNET\\ViewModels\\Helpers\\RelayCommand.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\Helpers\\RelayCommand.cs",
+              "RelativeToolTip": "DOANdotNET\\ViewModels\\Helpers\\RelayCommand.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAowC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T13:18:25.661Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "PasswordHelper.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\Helpers\\PasswordHelper.cs",
+              "RelativeDocumentMoniker": "DOANdotNET\\ViewModels\\Helpers\\PasswordHelper.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\Helpers\\PasswordHelper.cs",
+              "RelativeToolTip": "DOANdotNET\\ViewModels\\Helpers\\PasswordHelper.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAswEEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T13:18:19.913Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "PasswordConverter.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\Helpers\\PasswordConverter.cs",
+              "RelativeDocumentMoniker": "DOANdotNET\\ViewModels\\Helpers\\PasswordConverter.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\Helpers\\PasswordConverter.cs",
+              "RelativeToolTip": "DOANdotNET\\ViewModels\\Helpers\\PasswordConverter.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAowBYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T13:18:15.241Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "BaseViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\Helpers\\BaseViewModel.cs",
+              "RelativeDocumentMoniker": "DOANdotNET\\ViewModels\\Helpers\\BaseViewModel.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\Helpers\\BaseViewModel.cs",
+              "RelativeToolTip": "DOANdotNET\\ViewModels\\Helpers\\BaseViewModel.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAowB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T13:18:10.783Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
               "Title": "QL_BaiDoXe_Model.Context.cs",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Models\\QL_BaiDoXe_Model.Context.cs",
               "RelativeDocumentMoniker": "DOANdotNET\\Models\\QL_BaiDoXe_Model.Context.cs",
               "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Models\\QL_BaiDoXe_Model.Context.cs",
               "RelativeToolTip": "DOANdotNET\\Models\\QL_BaiDoXe_Model.Context.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAYwCEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAYwBYAAABJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-06T12:04:09.386Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 21,
               "Title": "ParkingService.cs",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\Services\\ParkingService.cs",
               "RelativeDocumentMoniker": "DOANdotNET\\ViewModels\\Services\\ParkingService.cs",
               "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\Services\\ParkingService.cs",
               "RelativeToolTip": "DOANdotNET\\ViewModels\\Services\\ParkingService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAADYBAAAAAAAAAAAAAFkBAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-05T16:34:59.289Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 22,
               "Title": "QuanLyDatTruoc.xaml.cs",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Views\\UserControls\\QuanLyDatTruoc.xaml.cs",
               "RelativeDocumentMoniker": "DOANdotNET\\Views\\UserControls\\QuanLyDatTruoc.xaml.cs",
               "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Views\\UserControls\\QuanLyDatTruoc.xaml.cs",
               "RelativeToolTip": "DOANdotNET\\Views\\UserControls\\QuanLyDatTruoc.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAswA8AAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-05T13:21:33.079Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 23,
               "Title": "QuanLyDatTruoc.xaml",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Views\\UserControls\\QuanLyDatTruoc.xaml",
               "RelativeDocumentMoniker": "DOANdotNET\\Views\\UserControls\\QuanLyDatTruoc.xaml",
@@ -157,66 +449,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 24,
               "Title": "QuanLyDatTruocViewModel.cs",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\QuanLyDatTruocViewModel.cs",
               "RelativeDocumentMoniker": "DOANdotNET\\ViewModels\\UCViewModels\\QuanLyDatTruocViewModel.cs",
               "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\QuanLyDatTruocViewModel.cs",
               "RelativeToolTip": "DOANdotNET\\ViewModels\\UCViewModels\\QuanLyDatTruocViewModel.cs",
-              "ViewState": "AgIAAGQAAAAAAAAAAAAswHkAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAYwHEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-05T13:11:31.616Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 25,
               "Title": "Dashboard.xaml",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Views\\UserControls\\Dashboard.xaml",
               "RelativeDocumentMoniker": "DOANdotNET\\Views\\UserControls\\Dashboard.xaml",
               "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Views\\UserControls\\Dashboard.xaml",
               "RelativeToolTip": "DOANdotNET\\Views\\UserControls\\Dashboard.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-06-05T13:02:56.86Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 26,
               "Title": "DashboardViewModel.cs",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\DashboardViewModel.cs",
               "RelativeDocumentMoniker": "DOANdotNET\\ViewModels\\UCViewModels\\DashboardViewModel.cs",
               "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\DashboardViewModel.cs",
               "RelativeToolTip": "DOANdotNET\\ViewModels\\UCViewModels\\DashboardViewModel.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAA2wEoAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAADgAAAAAAAAAAAAgwEoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-05T12:57:30.168Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 27,
               "Title": "DatTruoc.cs",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Models\\DatTruoc.cs",
               "RelativeDocumentMoniker": "DOANdotNET\\Models\\DatTruoc.cs",
               "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Models\\DatTruoc.cs",
               "RelativeToolTip": "DOANdotNET\\Models\\DatTruoc.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAIA6wBwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACMAAAAAAAAAAAA3wDUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-05T12:55:36.776Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 28,
               "Title": "DatTruocViewModel.cs",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\DatTruocViewModel.cs",
               "RelativeDocumentMoniker": "DOANdotNET\\ViewModels\\UCViewModels\\DatTruocViewModel.cs",
               "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\DatTruocViewModel.cs",
               "RelativeToolTip": "DOANdotNET\\ViewModels\\UCViewModels\\DatTruocViewModel.cs",
-              "ViewState": "AgIAAAABAAAAAAAAAAAAAAoBAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAPkAAAAAAAAAAAAkwAwBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-05T12:55:28.682Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 29,
               "Title": "DatTruoc.xaml.cs",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Views\\UserControls\\DatTruoc.xaml.cs",
               "RelativeDocumentMoniker": "DOANdotNET\\Views\\UserControls\\DatTruoc.xaml.cs",
@@ -228,7 +521,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 30,
               "Title": "DatTruoc.xaml",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Views\\UserControls\\DatTruoc.xaml",
               "RelativeDocumentMoniker": "DOANdotNET\\Views\\UserControls\\DatTruoc.xaml",
@@ -239,31 +532,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 31,
               "Title": "DatTruocService.cs",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\Services\\DatTruocService.cs",
               "RelativeDocumentMoniker": "DOANdotNET\\ViewModels\\Services\\DatTruocService.cs",
               "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\Services\\DatTruocService.cs",
               "RelativeToolTip": "DOANdotNET\\ViewModels\\Services\\DatTruocService.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAUwAwAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAALwAAAAAAAAAAAAcwNQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-05T11:44:31.982Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 32,
               "Title": "MainViewModel.cs",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\MainViewModel.cs",
               "RelativeDocumentMoniker": "DOANdotNET\\ViewModels\\MainViewModel.cs",
               "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\MainViewModel.cs",
               "RelativeToolTip": "DOANdotNET\\ViewModels\\MainViewModel.cs",
-              "ViewState": "AgIAAIcAAAAAAAAAAAAhwJQAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAWwEsAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-05T11:38:07.215Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 33,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Views\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "DOANdotNET\\Views\\MainWindow.xaml.cs",
@@ -275,79 +568,78 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 34,
               "Title": "App.config",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\App.config",
               "RelativeDocumentMoniker": "DOANdotNET\\App.config",
               "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\App.config",
               "RelativeToolTip": "DOANdotNET\\App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAYwBYAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2026-06-04T20:58:24.626Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-04T20:58:24.626Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 35,
               "Title": "ParkingSlot_Custom.cs",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Models\\ParkingSlot_Custom.cs",
               "RelativeDocumentMoniker": "DOANdotNET\\Models\\ParkingSlot_Custom.cs",
               "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Models\\ParkingSlot_Custom.cs",
               "RelativeToolTip": "DOANdotNET\\Models\\ParkingSlot_Custom.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAwCQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAwwCQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-04T20:54:46.095Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 36,
               "Title": "LoaiXe_Custom.cs",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Models\\LoaiXe_Custom.cs",
               "RelativeDocumentMoniker": "DOANdotNET\\Models\\LoaiXe_Custom.cs",
               "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Models\\LoaiXe_Custom.cs",
               "RelativeToolTip": "DOANdotNET\\Models\\LoaiXe_Custom.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAA8wBwAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAowBwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-04T20:54:42.625Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 37,
               "Title": "User_Custom.cs",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Models\\User_Custom.cs",
               "RelativeDocumentMoniker": "DOANdotNET\\Models\\User_Custom.cs",
               "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Models\\User_Custom.cs",
               "RelativeToolTip": "DOANdotNET\\Models\\User_Custom.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAowBgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAowBgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-04T20:54:25.863Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 38,
               "Title": "Transaction_Custom.cs",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Models\\Transaction_Custom.cs",
               "RelativeDocumentMoniker": "DOANdotNET\\Models\\Transaction_Custom.cs",
               "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Models\\Transaction_Custom.cs",
               "RelativeToolTip": "DOANdotNET\\Models\\Transaction_Custom.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAxwBQAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAA/wCEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-04T20:54:25.099Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "QL_BaiDoXe.sql",
+              "Title": "QL_BaiDoXe.sql ",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\QL_BaiDoXe.sql",
               "RelativeDocumentMoniker": "QL_BaiDoXe.sql",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\QL_BaiDoXe.sql",
-              "RelativeToolTip": "QL_BaiDoXe.sql",
+              "ToolTip": "QL_BaiDoXe.sql ",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2026-06-04T20:26:34.145Z"
+              "WhenOpened": "2026-06-04T20:26:34.145Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "QL_BaiDoXe.sql",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\bin\\Debug\\QL_BaiDoXe.sql",
               "RelativeDocumentMoniker": "DOANdotNET\\bin\\Debug\\QL_BaiDoXe.sql",
@@ -358,7 +650,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 39,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\Views\\MainWindow.xaml",
               "RelativeDocumentMoniker": "DOANdotNET\\Views\\MainWindow.xaml",
@@ -369,13 +661,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 40,
               "Title": "RevenueChartViewModel.cs",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\RevenueChartViewModel.cs",
               "RelativeDocumentMoniker": "DOANdotNET\\ViewModels\\UCViewModels\\RevenueChartViewModel.cs",
               "ToolTip": "C:\\Users\\LENOVO\\Desktop\\t\u00E0i li\u1EC7u\\DOANdotNET\\DOANdotNET\\ViewModels\\UCViewModels\\RevenueChartViewModel.cs",
               "RelativeToolTip": "DOANdotNET\\ViewModels\\UCViewModels\\RevenueChartViewModel.cs",
-              "ViewState": "AgIAAA8BAAAAAAAAAADwvxkBAAANAAAAAAAAAA==",
+              "ViewState": "AgIAABIBAAAAAAAAAAAkwCUBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-04T20:10:52.03Z"
             }

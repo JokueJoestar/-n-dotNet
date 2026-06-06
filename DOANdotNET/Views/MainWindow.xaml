@@ -21,10 +21,7 @@
         <DataTemplate DataType="{x:Type uc:StaffManager}">
             <uc:StaffManager/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type uc:Report}">
-            <uc:Report/>
-        </DataTemplate>
-        
+
         <DataTemplate DataType="{x:Type uc:Search}">
             <uc:Search/>
         </DataTemplate>

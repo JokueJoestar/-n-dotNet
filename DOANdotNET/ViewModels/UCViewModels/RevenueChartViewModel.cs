@@ -196,14 +196,23 @@ namespace DOANdotNET.ViewModels.UCViewModels
                 ? all
                 : all.Where(t => t.MaLoaiXe == LoaiXeChon.MaLoaiXe).ToList();
 
-            // Thẻ tổng quan
+            // FIX: Thẻ tổng quan — đồng nhất cách tính với Dashboard
+            // TongGiaoDich = tổng xe trong khoảng thời gian (theo ThoiGianVao)
+            // DaThanhToan  = xe đã ra (có ThoiGianRa)
+            // XeTrongBai   = xe đang đỗ thực tế (realtime, không lọc theo ngày)
+            // TongDoanhThu = chỉ tính xe đã ra (có ThoiGianRa) — khớp với Dashboard
             TongGiaoDich = all.Count;
             DaThanhToan = all.Count(t => t.ThoiGianRa != null);
-            XeTrongBai = _service.CountCoXe();
-            TongDoanhThu = filtered.Sum(t => t.ThanhTien);
-            TongLuotXe = filtered.Count;
+            XeTrongBai = _service.CountCoXe(); // realtime, khớp Dashboard
 
-            // Biểu đồ
+            // FIX: Chỉ tính doanh thu từ xe đã ra — tránh tính xe đang đỗ chưa trả tiền
+            TongDoanhThu = filtered
+                .Where(t => t.ThoiGianRa != null)
+                .Sum(t => t.ThanhTien);
+
+            TongLuotXe = filtered.Count(t => t.ThoiGianRa != null);
+
+            // Biểu đồ — nhóm theo ngày ra (ThoiGianRa), khớp cách Dashboard tính
             var grouped = filtered
                 .Where(t => t.ThoiGianRa != null)
                 .GroupBy(t => t.ThoiGianRa.Value.Date)
@@ -228,9 +237,9 @@ namespace DOANdotNET.ViewModels.UCViewModels
                 });
             }
 
-            CoChartData = ChartItems.Count > 0;  // ← nằm TRONG class, đúng rồi
+            CoChartData = ChartItems.Count > 0;
 
-            // Bảng giao dịch
+            // Bảng giao dịch — hiển thị cả đang gửi lẫn đã xong
             DanhSachGiaoDich.Clear();
             foreach (var t in filtered.OrderByDescending(t => t.ThoiGianVao))
             {
@@ -281,5 +290,5 @@ namespace DOANdotNET.ViewModels.UCViewModels
                     System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
             }
         }
-    }  // ← đóng RevenueChartViewModel
-}      // ← đóng namespace
+    }
+}

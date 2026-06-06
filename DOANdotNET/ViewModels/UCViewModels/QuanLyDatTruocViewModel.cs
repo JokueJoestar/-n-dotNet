@@ -11,7 +11,16 @@ namespace DOANdotNET.ViewModels.UCViewModels
     {
         private readonly DatTruocService _svc = new DatTruocService();
 
-        // ── Danh sách & bộ lọc ──────────────────────────────────────
+        private string _filterTrangThai = "Tất cả";
+        public string FilterTrangThai
+        {
+            get => _filterTrangThai;
+            set { SetProperty(ref _filterTrangThai, value); TaiDuLieu(); }
+        }
+
+        public string[] DanhSachFilter { get; } =
+            { "Tất cả", "Chờ xử lý", "Đã xác nhận", "Đã hủy", "Hoàn thành" };
+
         private ObservableCollection<DatTruoc> _danhSach;
         public ObservableCollection<DatTruoc> DanhSach
         {
@@ -19,21 +28,6 @@ namespace DOANdotNET.ViewModels.UCViewModels
             set => SetProperty(ref _danhSach, value);
         }
 
-        private string _filterTrangThai = "Tất cả";
-        public string FilterTrangThai
-        {
-            get => _filterTrangThai;
-            set
-            {
-                SetProperty(ref _filterTrangThai, value);
-                TaiDuLieu();
-            }
-        }
-
-        public string[] DanhSachFilter { get; } =
-            { "Tất cả", "Chờ xử lý", "Đã xác nhận", "Đã hủy", "Hoàn thành" };
-
-        // ── Booking đang chọn ────────────────────────────────────────
         private DatTruoc _chon;
         public DatTruoc ChonBooking
         {
@@ -44,6 +38,8 @@ namespace DOANdotNET.ViewModels.UCViewModels
                 OnPropertyChanged(nameof(CanXacNhan));
                 OnPropertyChanged(nameof(CanHuy));
                 OnPropertyChanged(nameof(CoChonBooking));
+                // FIX: Buộc WPF re-evaluate CanExecute của tất cả command
+                CommandManager.InvalidateRequerySuggested();
             }
         }
 
@@ -51,14 +47,13 @@ namespace DOANdotNET.ViewModels.UCViewModels
         public bool CanXacNhan => _chon?.TrangThai == "Chờ xử lý";
         public bool CanHuy => _chon?.CoTheHuy == true;
 
-        // ── Commands ─────────────────────────────────────────────────
         public ICommand LamMoiCommand { get; }
         public ICommand XacNhanCommand { get; }
         public ICommand HuyCommand { get; }
 
         public QuanLyDatTruocViewModel()
         {
-            TaiDuLieu();
+            DanhSach = new ObservableCollection<DatTruoc>();
 
             LamMoiCommand = new RelayCommand(_ => TaiDuLieu());
 
@@ -67,21 +62,18 @@ namespace DOANdotNET.ViewModels.UCViewModels
                 {
                     if (!_svc.XacNhanDatTruoc(_chon.MaDatTruoc))
                     {
-                        MessageBox.Show("Không thể xác nhận. Booking có thể đã thay đổi trạng thái.",
+                        MessageBox.Show("Không thể xác nhận. Booking đã thay đổi trạng thái.",
                             "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        TaiDuLieu();
-                        return;
+                        TaiDuLieu(); return;
                     }
                     MessageBox.Show(
                         $"✅ Đã xác nhận đặt trước {_chon.MaDatTruoc}\n" +
-                        $"Khách: {_chon.User?.HoTen}\n" +
-                        $"Slot: {_chon.IDDoXe}  —  {_chon.KhuVuc}",
-                        "Xác nhận thành công",
-                        MessageBoxButton.OK, MessageBoxImage.Information);
+                        $"Khách: {_chon.User?.HoTen}\nSlot: {_chon.IDDoXe} — {_chon.KhuVuc}",
+                        "Xác nhận thành công", MessageBoxButton.OK, MessageBoxImage.Information);
                     TaiDuLieu();
                     ChonBooking = null;
                 },
-                _ => CanXacNhan
+                _ => CanXacNhan   // FIX: lambda này được re-check nhờ InvalidateRequerySuggested
             );
 
             HuyCommand = new RelayCommand(
@@ -90,13 +82,11 @@ namespace DOANdotNET.ViewModels.UCViewModels
                     var r = MessageBox.Show(
                         $"Hủy đặt trước {_chon.MaDatTruoc}?\n" +
                         $"Khách: {_chon.User?.HoTen}\n" +
-                        $"Khu vực: {_chon.KhuVuc}  —  {_chon.ThoiGianDenHienThi}",
-                        "Xác nhận hủy",
-                        MessageBoxButton.YesNo, MessageBoxImage.Warning);
-
+                        $"Khu vực: {_chon.KhuVuc} — {_chon.ThoiGianDenHienThi}",
+                        "Xác nhận hủy", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                     if (r != MessageBoxResult.Yes) return;
 
-                    if (_svc.HuyDatTruoc(_chon.MaDatTruoc, _chon.IDKhachHang))
+                    if (_svc.HuyBoiAdmin(_chon.MaDatTruoc))
                     {
                         MessageBox.Show("Đã hủy đặt trước.", "Thông báo",
                             MessageBoxButton.OK, MessageBoxImage.Information);
@@ -112,6 +102,8 @@ namespace DOANdotNET.ViewModels.UCViewModels
                 _ => CanHuy
             );
         }
+
+        public void KhoiTao() => TaiDuLieu();
 
         private void TaiDuLieu()
         {

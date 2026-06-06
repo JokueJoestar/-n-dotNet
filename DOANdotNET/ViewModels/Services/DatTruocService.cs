@@ -1,23 +1,33 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text.RegularExpressions;
 using DOANdotNET.Models;
 
 namespace DOANdotNET.ViewModels.Services
 {
     public class DatTruocService
     {
+        // FIX: Dùng EF context để lấy connection string
+        // → Không cần đọc App.config thủ công, không bao giờ bị lỗi "not found"
+        // → EF tự biết connection string vì nó đã dùng được ở ParkingService
+        private static string _cachedConnStr = null;
+
+        private string GetSqlConnectionString()
+        {
+            if (_cachedConnStr != null) return _cachedConnStr;
+            using (var db = new QL_BaiDoXeEntities())
+            {
+                // Lấy connection string thuần SQL từ EF context
+                _cachedConnStr = db.Database.Connection.ConnectionString;
+                return _cachedConnStr;
+            }
+        }
+
         private SqlConnection OpenConn()
         {
-            using (var ctx = new QL_BaiDoXeEntities())
-            {
-                // Lấy SqlConnection từ EF context luôn, không cần parse
-                var efConn = ctx.Database.Connection.ConnectionString;
-                var conn = new SqlConnection(efConn);
-                conn.Open();
-                return conn;
-            }
+            var conn = new SqlConnection(GetSqlConnectionString());
+            conn.Open();
+            return conn;
         }
 
         private DatTruoc DocDong(SqlDataReader rdr)
@@ -48,7 +58,8 @@ namespace DOANdotNET.ViewModels.Services
         }
 
         public string TaoDatTruoc(string idKhachHang, string khuVuc,
-                                   string maLoaiXe, DateTime thoiGianDen)
+                                   string maLoaiXe, DateTime thoiGianDen,
+                                   string ghiChu = null)
         {
             using (var conn = OpenConn())
             {
@@ -65,16 +76,15 @@ namespace DOANdotNET.ViewModels.Services
                 }
 
                 string ma = "DT-" + DateTime.Now.ToString("yyMMddHHmmss")
-                                  + "-" + idKhachHang.ToUpper();
+                                   + "-" + idKhachHang.ToUpper();
                 DateTime hetHan = thoiGianDen.AddMinutes(30);
 
                 using (var cmd = new SqlCommand(
                     @"INSERT INTO DatTruoc
                         (MaDatTruoc,IDKhachHang,KhuVuc,MaLoaiXe,
-                         ThoiGianDen,ThoiGianHetHan,TrangThai,IDDoXe,NgayTao)
+                         ThoiGianDen,ThoiGianHetHan,TrangThai,IDDoXe,GhiChu,NgayTao)
                       VALUES
-                        (@ma,@kh,@khu,@lx,@den,@het,N'Đã xác nhận',@slot,GETDATE())",
-                    conn))
+                        (@ma,@kh,@khu,@lx,@den,@het,N'Chờ xử lý',@slot,@ghiChu,GETDATE())", conn))
                 {
                     cmd.Parameters.AddWithValue("@ma", ma);
                     cmd.Parameters.AddWithValue("@kh", idKhachHang);
@@ -83,6 +93,7 @@ namespace DOANdotNET.ViewModels.Services
                     cmd.Parameters.AddWithValue("@den", thoiGianDen);
                     cmd.Parameters.AddWithValue("@het", hetHan);
                     cmd.Parameters.AddWithValue("@slot", idDoXe);
+                    cmd.Parameters.AddWithValue("@ghiChu", (object)ghiChu ?? DBNull.Value);
                     cmd.ExecuteNonQuery();
                 }
                 return ma;
@@ -95,10 +106,23 @@ namespace DOANdotNET.ViewModels.Services
             using (var cmd = new SqlCommand(
                 @"UPDATE DatTruoc SET TrangThai = N'Đã hủy'
                   WHERE MaDatTruoc = @ma AND IDKhachHang = @kh
-                    AND TrangThai IN (N'Chờ xử lý', N'Đã xác nhận')", conn))
+                    AND TrangThai IN (N'Chờ xử lý',N'Đã xác nhận')", conn))
             {
                 cmd.Parameters.AddWithValue("@ma", maDatTruoc);
                 cmd.Parameters.AddWithValue("@kh", idKhachHang);
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        public bool HuyBoiAdmin(string maDatTruoc)
+        {
+            using (var conn = OpenConn())
+            using (var cmd = new SqlCommand(
+                @"UPDATE DatTruoc SET TrangThai = N'Đã hủy'
+                  WHERE MaDatTruoc = @ma
+                    AND TrangThai IN (N'Chờ xử lý',N'Đã xác nhận')", conn))
+            {
+                cmd.Parameters.AddWithValue("@ma", maDatTruoc);
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
@@ -120,8 +144,7 @@ namespace DOANdotNET.ViewModels.Services
             var list = new List<DatTruoc>();
             using (var conn = OpenConn())
             using (var cmd = new SqlCommand(
-                @"SELECT d.*, l.TenLoaiXe, l.PhiMoiGio AS GiaDoXe,
-                         NULL AS TenKhach
+                @"SELECT d.*, l.TenLoaiXe, l.PhiMoiGio AS GiaDoXe, NULL AS TenKhach
                   FROM DatTruoc d
                   LEFT JOIN LoaiXe l ON l.MaLoaiXe = d.MaLoaiXe
                   WHERE d.IDKhachHang = @kh
@@ -129,8 +152,7 @@ namespace DOANdotNET.ViewModels.Services
             {
                 cmd.Parameters.AddWithValue("@kh", idKhachHang);
                 using (var rdr = cmd.ExecuteReader())
-                    while (rdr.Read())
-                        list.Add(DocDong(rdr));
+                    while (rdr.Read()) list.Add(DocDong(rdr));
             }
             return list;
         }
@@ -140,19 +162,16 @@ namespace DOANdotNET.ViewModels.Services
             var list = new List<DatTruoc>();
             using (var conn = OpenConn())
             using (var cmd = new SqlCommand(
-                @"SELECT d.*, l.TenLoaiXe, l.PhiMoiGio AS GiaDoXe,
-                         u.HoTen AS TenKhach
+                @"SELECT d.*, l.TenLoaiXe, l.PhiMoiGio AS GiaDoXe, u.HoTen AS TenKhach
                   FROM DatTruoc d
                   LEFT JOIN LoaiXe l ON l.MaLoaiXe = d.MaLoaiXe
-                  LEFT JOIN Users u ON u.ID = d.IDKhachHang
+                  LEFT JOIN Users  u ON u.ID = d.IDKhachHang
                   WHERE (@tt IS NULL OR d.TrangThai = @tt)
                   ORDER BY d.NgayTao DESC", conn))
             {
-                cmd.Parameters.AddWithValue("@tt",
-                    (object)trangThaiFilter ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@tt", (object)trangThaiFilter ?? DBNull.Value);
                 using (var rdr = cmd.ExecuteReader())
-                    while (rdr.Read())
-                        list.Add(DocDong(rdr));
+                    while (rdr.Read()) list.Add(DocDong(rdr));
             }
             return list;
         }
@@ -165,8 +184,7 @@ namespace DOANdotNET.ViewModels.Services
                 @"SELECT DISTINCT KhuVuc FROM ParkingSlot
                   WHERE TrangThai = N'Trống' ORDER BY KhuVuc", conn))
             using (var rdr = cmd.ExecuteReader())
-                while (rdr.Read())
-                    list.Add(rdr[0].ToString());
+                while (rdr.Read()) list.Add(rdr[0].ToString());
             return list;
         }
 
@@ -187,7 +205,7 @@ namespace DOANdotNET.ViewModels.Services
             using (var conn = OpenConn())
             using (var cmd = new SqlCommand(
                 @"SELECT COUNT(*) FROM DatTruoc
-                  WHERE TrangThai IN (N'Chờ xử lý', N'Đã xác nhận')
+                  WHERE TrangThai IN (N'Chờ xử lý',N'Đã xác nhận')
                     AND ThoiGianHetHan >= GETDATE()", conn))
                 return (int)cmd.ExecuteScalar();
         }
